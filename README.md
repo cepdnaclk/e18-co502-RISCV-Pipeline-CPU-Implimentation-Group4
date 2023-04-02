@@ -1,4 +1,4 @@
-___
+---
 layout: home
 permalink: ./index.html
 
