@@ -2320,6 +2320,10 @@ section {
 My Editions
 */
 
-.row img{  
+.services .row img{  
   height: 100%;
+}
+
+.services .row {
+  padding-bottom: 20px;
 }
