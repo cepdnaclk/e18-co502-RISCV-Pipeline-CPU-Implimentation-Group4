@@ -13,8 +13,8 @@ title: RV32IM Pipeline Implementation
 
 ## TEAM
 -  E/18/077, Nipun Dharmarathne, [e18077@eng.pdn.ac.lk](mailto:name@email.com)
--  E/18/397, Shamod Wijerathne, [e18397.pdn.ac.lk](mailto:name@email.com)
--  E/18/402, Chathura Wimalasiri, [e18402.pdn.ac.lk](mailto:name@email.com)
+-  E/18/397, Shamod Wijerathne, [e18397@eng.pdn.ac.lk](mailto:name@email.com)
+-  E/18/402, Chathura Wimalasiri, [e18402@eng.pdn.ac.lk](mailto:name@email.com)
 
 ## CONTENT
 1. [LINKS](#links)
