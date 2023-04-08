@@ -1,0 +1,149 @@
+#! /c/iverilog/bin/vvp
+:ivl_version "0.9.7 " "(v0_9_7)";
+:vpi_time_precision + 0;
+:vpi_module "system";
+:vpi_module "v2005_math";
+:vpi_module "va_math";
+S_0125EA98 .scope module, "reg_file_tb" "reg_file_tb" 2 39;
+ .timescale 0 0;
+v010EF4E8_0 .var "CLK", 0 0;
+v010EF438_0 .var "READREG1", 4 0;
+v010EF540_0 .var "READREG2", 4 0;
+v010EF490_0 .net "REGOUT1", 31 0, L_0125CAA0; 1 drivers
+v010EF7A8_0 .net "REGOUT2", 31 0, L_0125CC98; 1 drivers
+v010EF648_0 .var "RESET", 0 0;
+v010EF330_0 .var "WRITEDATA", 31 0;
+v010EF6A0_0 .var "WRITEENABLE", 0 0;
+v010EF2D8_0 .var "WRITEREG", 4 0;
+S_0125ECB8 .scope module, "myregfile" "reg_file" 2 45, 2 7, S_0125EA98;
+ .timescale 0 0;
+L_0125CAA0/d .functor BUFZ 32, L_010EF598, C4<00000000000000000000000000000000>, C4<00000000000000000000000000000000>, C4<00000000000000000000000000000000>;
+L_0125CAA0 .delay (2,2,2) L_0125CAA0/d;
+L_0125CC98/d .functor BUFZ 32, L_010EF6F8, C4<00000000000000000000000000000000>, C4<00000000000000000000000000000000>, C4<00000000000000000000000000000000>;
+L_0125CC98 .delay (2,2,2) L_0125CC98/d;
+v010F1ED8_0 .net "CLK", 0 0, v010EF4E8_0; 1 drivers
+v0125B880_0 .net "IN", 31 0, v010EF330_0; 1 drivers
+v0125B8D8_0 .net "INADDRESS", 4 0, v010EF2D8_0; 1 drivers
+v010F1F30_0 .alias "OUT1", 31 0, v010EF490_0;
+v010F1F88_0 .net "OUT1ADDRESS", 4 0, v010EF438_0; 1 drivers
+v01251550_0 .alias "OUT2", 31 0, v010EF7A8_0;
+v012515A8_0 .net "OUT2ADDRESS", 4 0, v010EF540_0; 1 drivers
+v01251600_0 .net "RESET", 0 0, v010EF648_0; 1 drivers
+v01251658_0 .net "WRITE", 0 0, v010EF6A0_0; 1 drivers
+v01258340_0 .net *"_s0", 31 0, L_010EF598; 1 drivers
+v01258398_0 .net *"_s4", 31 0, L_010EF6F8; 1 drivers
+v012583F0_0 .var/i "i", 31 0;
+v01258448 .array "register", 31 0, 31 0;
+E_01258CF8 .event posedge, v010F1ED8_0;
+L_010EF598 .array/port v01258448, v010EF438_0;
+L_010EF6F8 .array/port v01258448, v010EF540_0;
+    .scope S_0125ECB8;
+T_0 ;
+    %wait E_01258CF8;
+    %load/v 8, v01251600_0, 1;
+    %jmp/0xz  T_0.0, 8;
+    %delay 1, 0;
+    %set/v v012583F0_0, 0, 32;
+T_0.2 ;
+    %load/v 8, v012583F0_0, 32;
+   %cmpi/s 8, 32, 32;
+    %jmp/0xz T_0.3, 5;
+    %ix/getv/s 3, v012583F0_0;
+    %jmp/1 t_0, 4;
+    %ix/load 0, 32, 0; word width
+    %ix/load 1, 0, 0; part off
+    %assign/av v01258448, 0, 0;
+t_0 ;
+    %ix/load 0, 1, 0;
+    %load/vp0/s 8, v012583F0_0, 32;
+    %set/v v012583F0_0, 8, 32;
+    %jmp T_0.2;
+T_0.3 ;
+    %jmp T_0.1;
+T_0.0 ;
+    %load/v 8, v01251658_0, 1;
+    %jmp/0xz  T_0.4, 8;
+    %delay 1, 0;
+    %load/v 8, v0125B880_0, 32;
+    %ix/getv 3, v0125B8D8_0;
+    %jmp/1 t_1, 4;
+    %ix/load 0, 32, 0; word width
+    %ix/load 1, 0, 0; part off
+    %assign/av v01258448, 0, 8;
+t_1 ;
+T_0.4 ;
+T_0.1 ;
+    %jmp T_0;
+    .thread T_0;
+    .scope S_0125EA98;
+T_1 ;
+    %set/v v010EF4E8_0, 1, 1;
+    %vpi_call 2 52 "$dumpfile", "reg_file_wavedata.vcd";
+    %vpi_call 2 53 "$dumpvars", 1'sb0, S_0125EA98;
+    %set/v v010EF648_0, 0, 1;
+    %set/v v010EF6A0_0, 0, 1;
+    %delay 5, 0;
+    %set/v v010EF648_0, 1, 1;
+    %set/v v010EF438_0, 0, 5;
+    %movi 8, 4, 5;
+    %set/v v010EF540_0, 8, 5;
+    %delay 7, 0;
+    %set/v v010EF648_0, 0, 1;
+    %delay 3, 0;
+    %movi 8, 2, 5;
+    %set/v v010EF2D8_0, 8, 5;
+    %movi 8, 95, 32;
+    %set/v v010EF330_0, 8, 32;
+    %set/v v010EF6A0_0, 1, 1;
+    %delay 9, 0;
+    %set/v v010EF6A0_0, 0, 1;
+    %delay 1, 0;
+    %movi 8, 2, 5;
+    %set/v v010EF438_0, 8, 5;
+    %delay 9, 0;
+    %movi 8, 1, 5;
+    %set/v v010EF2D8_0, 8, 5;
+    %movi 8, 28, 32;
+    %set/v v010EF330_0, 8, 32;
+    %set/v v010EF6A0_0, 1, 1;
+    %movi 8, 1, 5;
+    %set/v v010EF438_0, 8, 5;
+    %delay 10, 0;
+    %set/v v010EF6A0_0, 0, 1;
+    %delay 10, 0;
+    %movi 8, 4, 5;
+    %set/v v010EF2D8_0, 8, 5;
+    %movi 8, 6, 32;
+    %set/v v010EF330_0, 8, 32;
+    %set/v v010EF6A0_0, 1, 1;
+    %delay 10, 0;
+    %movi 8, 15, 32;
+    %set/v v010EF330_0, 8, 32;
+    %set/v v010EF6A0_0, 1, 1;
+    %delay 10, 0;
+    %set/v v010EF6A0_0, 0, 1;
+    %delay 6, 0;
+    %movi 8, 1, 5;
+    %set/v v010EF2D8_0, 8, 5;
+    %movi 8, 50, 32;
+    %set/v v010EF330_0, 8, 32;
+    %set/v v010EF6A0_0, 1, 1;
+    %delay 5, 0;
+    %set/v v010EF6A0_0, 0, 1;
+    %delay 10, 0;
+    %vpi_call 2 108 "$finish";
+    %end;
+    .thread T_1;
+    .scope S_0125EA98;
+T_2 ;
+    %delay 5, 0;
+    %load/v 8, v010EF4E8_0, 1;
+    %inv 8, 1;
+    %set/v v010EF4E8_0, 8, 1;
+    %jmp T_2;
+    .thread T_2;
+# The file index is used to find the file name in the following table.
+:file_names 3;
+    "N/A";
+    "<interactive>";
+    "reg_file.v";
