@@ -1,5 +1,5 @@
 $date
-	Sun Apr  9 12:16:03 2023
+	Sun Apr  9 12:24:59 2023
 $end
 $version
 	Icarus Verilog
@@ -9,54 +9,39 @@ $timescale
 $end
 $scope module instruction_memory_tb $end
 $var wire 32 ! INSTRUCTION [31:0] $end
-$var reg 1 " CLK $end
-$var reg 32 # PC [31:0] $end
+$var reg 32 " PC [31:0] $end
 $scope module DUT $end
-$var wire 1 " CLK $end
-$var wire 32 $ PC [31:0] $end
-$var reg 32 % INSTRUCTION [31:0] $end
+$var wire 32 # PC [31:0] $end
+$var reg 32 $ INSTRUCTION [31:0] $end
 $upscope $end
 $upscope $end
 $enddefinitions $end
 #0
 $dumpvars
-bx %
-b0 $
+bx $
 b0 #
-0"
+b0 "
 bx !
 $end
-#50
-1"
-#70
+#20
 b1000000010000000000010011 !
-b1000000010000000000010011 %
+b1000000010000000000010011 $
 #100
-0"
+b100 "
 b100 #
-b100 $
-#150
-1"
-#170
+#120
 b10000000100000000000010011 !
-b10000000100000000000010011 %
+b10000000100000000000010011 $
 #200
-0"
+b1000 "
 b1000 #
-b1000 $
-#250
-1"
-#270
+#220
 b11000100010000000000110011 !
-b11000100010000000000110011 %
+b11000100010000000000110011 $
 #300
-0"
+b1100 "
 b1100 #
-b1100 $
-#350
-1"
-#370
+#320
 b110000000000100011 !
-b110000000000100011 %
+b110000000000100011 $
 #400
-0"
