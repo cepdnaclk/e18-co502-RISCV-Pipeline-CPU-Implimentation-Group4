@@ -39,7 +39,7 @@ end
 
 
 //Reading
-// 3 TIME UNITS OF READING DEALY
+// 2 TIME UNITS OF READING DEALY
 always @( PC )
 begin
 #2
