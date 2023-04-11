@@ -7,11 +7,11 @@ This memory allows instructions to be read as 4-Byte blocks
 */
 `timescale 1ns/100ps
 module instruction_memory(
-	CLK,
+	
     PC,
     INSTRUCTION,
 );
-input				CLK;
+
 input[31:0]			PC;
 output reg [31:0]	INSTRUCTION;
 
@@ -39,8 +39,8 @@ end
 
 
 //Reading
-// 3 TIME UNITS OF READING DEALY
-always @( posedge CLK )
+// 2 TIME UNITS OF READING DEALY
+always @( PC )
 begin
 #2
 		INSTRUCTION[7:0]     =  memory_array[{PC+32'b00000000}];
