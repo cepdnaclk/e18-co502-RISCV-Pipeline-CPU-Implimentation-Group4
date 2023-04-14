@@ -23,6 +23,7 @@ module alu(DATA1, DATA2, RESULT, SELECT, EQ_FLAG, LT_FLAG, LTU_FLAG);
                REM, REMU;                                       
 	
     //Instructions
+    assign #1 FORWARD = DATA2;          //Forward
     assign #2 ADD = DATA1 + DATA2;      //Addition
 	assign #2 SUB = DATA1 - DATA2;      //Substraction
     
@@ -34,7 +35,7 @@ module alu(DATA1, DATA2, RESULT, SELECT, EQ_FLAG, LT_FLAG, LTU_FLAG);
     assign #1 XOR = DATA1 ^ DATA2;      //Bitwise XOR
     
     assign #1 SRL = DATA1 >> DATA2;	    //Shift right logical
-    assign #1 SRA = DATA1 >>> DATA2;    //Shift roght arithmetic
+    assign #1 SRA = DATA1 >>> DATA2;    //Shift rIght arithmetic
     
     assign #1 OR = DATA1 | DATA2;       //Bitwise OR
     assign #1 AND = DATA1 & DATA2;      //Bitwise AND
@@ -54,24 +55,25 @@ module alu(DATA1, DATA2, RESULT, SELECT, EQ_FLAG, LT_FLAG, LTU_FLAG);
 	begin
         //Select the function to implement using a case structure
 		case(SELECT)
-			5'b00000: RESULT = ADD;                                                  
-			5'b00001: RESULT = SUB;		         
-			5'b00010: RESULT = SLL;          
-            5'b00011: RESULT = SLT;        
-            5'b00100: RESULT = SLTU;	             							
-   			5'b00101: RESULT = XOR;                   
-            5'b00110: RESULT = SRL;                 			            							
-            5'b00111: RESULT = SRA;                 			            							
-            5'b01000: RESULT = OR;                 			            							
-            5'b01001: RESULT = AND;                 			            							
-			5'b01010: RESULT = MUL;                 			            							
-			5'b01011: RESULT = MULH;                 			            							
-			5'b01100: RESULT = MULHSU;                 			            							
-			5'b01101: RESULT = MULHU;                 			            							                                             			  
-			5'b01110: RESULT = DIV;                 			            							
-			5'b01111: RESULT = DIVU;                 			            							
-			5'b10000: RESULT = REM;                 			            							
-			5'b10001: RESULT = REMU;                 			            							
+			5'b00000: RESULT = FORWARD;                                                  
+			5'b00001: RESULT = ADD;		         
+			5'b00010: RESULT = SUB;          
+            5'b00011: RESULT = SLL;        
+            5'b00100: RESULT = SLT;	             							
+   			5'b00101: RESULT = SLTU;                   
+            5'b00110: RESULT = XOR;                 			            							
+            5'b00111: RESULT = SRL;                 			            							
+            5'b01000: RESULT = SRA;                 			            							
+            5'b01001: RESULT = OR;                 			            							
+			5'b01010: RESULT = AND;                 			            							
+			5'b01011: RESULT = MUL;                 			            							
+			5'b01100: RESULT = MULH;                 			            							
+			5'b01101: RESULT = MULHSU;                 			            							                                             			  
+			5'b01110: RESULT = MULHU;                 			            							
+			5'b01111: RESULT = DIV;                 			            							
+			5'b10000: RESULT = DIVU;                 			            							
+			5'b10001: RESULT = REM; 
+            5'b10010: RESULT = REMU;
 		    default: RESULT = 31'd0;		//Default value=0 (For unused select combinations)
 		endcase
     end    
@@ -107,18 +109,18 @@ module alu_tb();
         OPERAND2 = 32'd10;
         
         $display("OPERAND1 + OPERAND2");
-        ALUOP = 5'b00000;
+        ALUOP = 5'b00001;
         #5 
         
         $display("OPERAND1 - OPERAND2");
-        ALUOP = 5'b00001;
+        ALUOP = 5'b00010;
         #5
         
         $display("OPERAND1 | OPERAND2");        
-        ALUOP = 5'b01000;
+        ALUOP = 5'b01001;
         #5
         
         $display("OPERAND1 & OPERAND2"); 
-        ALUOP = 5'b01001;
+        ALUOP = 5'b01010;
     end		
 endmodule
