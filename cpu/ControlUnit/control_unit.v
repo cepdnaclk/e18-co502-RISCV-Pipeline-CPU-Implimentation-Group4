@@ -15,8 +15,8 @@ module control_unit(INSTRUCTION, ALUOP, MUXIMMTYPE_SELECT, MUXPC_SELECT, MUXIMM_
     wire [2:0] FUNCT3;
     wire [6:0] FUNCT7;
     
-    assign OPCODE = INSTRUCTION[6:0];       //opcode
-    assign FUNCT3 = INSTRUCTION[14:12];     //FUNCT3 field
+    assign OPCODE = INSTRUCTION[6:0];       
+    assign FUNCT3 = INSTRUCTION[14:12];     
     assign FUNCT7 = INSTRUCTION[31:25];
 
 	always @(OPCODE, FUNCT3, FUNCT7) begin     
@@ -57,7 +57,7 @@ module control_unit(INSTRUCTION, ALUOP, MUXIMMTYPE_SELECT, MUXPC_SELECT, MUXIMM_
             
             7'b0000011: begin #1		            //Load instructions (LB, LH, LW, LBU, LHU)
                 ALUOP = 5'b00001;
-                MUXIMMTYPE_SELECT = 3'bxxx;
+                MUXIMMTYPE_SELECT = 3'b000;
                 MUXPC_SELECT = 1'b0;
                 MUXIMM_SELECT = 1'b1;
                 MUXJAL_SELECT = 1'b0;
@@ -69,8 +69,8 @@ module control_unit(INSTRUCTION, ALUOP, MUXIMMTYPE_SELECT, MUXPC_SELECT, MUXIMM_
                 JUMP = 1'b0;                    
             end
  
-            7'b0010011: begin #1
-                MUXIMMTYPE_SELECT = 3'bxxx;
+            7'b0010011: begin #1                                //ADDI, SLLI, SLTI, SLTIU, XORI, SLRI, SRAI, ORI, ANDI
+                MUXIMMTYPE_SELECT = 3'b000;
                 MUXPC_SELECT = 1'b0;
                 MUXIMM_SELECT = 1'b1;
                 MUXJAL_SELECT = 1'b0;
@@ -94,8 +94,8 @@ module control_unit(INSTRUCTION, ALUOP, MUXIMMTYPE_SELECT, MUXPC_SELECT, MUXIMM_
                     3'b100: ALUOP = 5'b00110;                    //XORI
                     3'b101: begin                                //SLRI, SRAI
                         case(FUNCT7)
-                            7'b0000000: ALUOP = 5'b00111;       //SRLI 
-                            7'b0100000: ALUOP = 5'b01000;       //SRAI     
+                            7'b0000000: ALUOP = 5'b00111;        //SRLI 
+                            7'b0100000: ALUOP = 5'b01000;        //SRAI     
                         endcase                        
                     end
                     
@@ -106,7 +106,7 @@ module control_unit(INSTRUCTION, ALUOP, MUXIMMTYPE_SELECT, MUXPC_SELECT, MUXIMM_
             
             7'b1100111: begin #1                //JALR
                 ALUOP = 5'b00001;
-                MUXIMMTYPE_SELECT = 3'bxxx;
+                MUXIMMTYPE_SELECT = 3'b000;
                 MUXPC_SELECT = 1'b0;
                 MUXIMM_SELECT = 1'b1;
                 MUXJAL_SELECT = 1'b1;
@@ -120,7 +120,7 @@ module control_unit(INSTRUCTION, ALUOP, MUXIMMTYPE_SELECT, MUXPC_SELECT, MUXIMM_
             
             7'b0100011: begin #1                //Store instructions (SB, SH, SW, SBU, SHU)
                 ALUOP = 5'b00001;
-                MUXIMMTYPE_SELECT = 3'bxxx;
+                MUXIMMTYPE_SELECT = 3'b001;
                 MUXPC_SELECT = 1'b0;
                 MUXIMM_SELECT = 1'b1;
                 MUXJAL_SELECT = 1'b0;
@@ -134,7 +134,7 @@ module control_unit(INSTRUCTION, ALUOP, MUXIMMTYPE_SELECT, MUXPC_SELECT, MUXIMM_
             
             7'b0010111: begin #1                //AUIPC
                 ALUOP = 5'b00001;
-                MUXIMMTYPE_SELECT = 3'bxxx;
+                MUXIMMTYPE_SELECT = 3'b010;
                 MUXPC_SELECT = 1'b1;
                 MUXIMM_SELECT = 1'b1;
                 MUXJAL_SELECT = 1'b0;
@@ -148,7 +148,7 @@ module control_unit(INSTRUCTION, ALUOP, MUXIMMTYPE_SELECT, MUXPC_SELECT, MUXIMM_
             
             7'b0110111: begin #1                //LUI
                 ALUOP = 5'b00000;
-                MUXIMMTYPE_SELECT = 3'bxxx;
+                MUXIMMTYPE_SELECT = 3'b010;
                 MUXPC_SELECT = 1'bx;
                 MUXIMM_SELECT = 1'b1;
                 MUXJAL_SELECT = 1'b0;
@@ -162,7 +162,7 @@ module control_unit(INSTRUCTION, ALUOP, MUXIMMTYPE_SELECT, MUXPC_SELECT, MUXIMM_
             
             7'b1100011: begin #1                //Branch instructions
                 ALUOP = 5'b00010;
-                MUXIMMTYPE_SELECT = 3'bxxx;
+                MUXIMMTYPE_SELECT = 3'b011;
                 MUXPC_SELECT = 1'b1;
                 MUXIMM_SELECT = 1'b1;
                 MUXJAL_SELECT = 1'b0;
@@ -176,7 +176,7 @@ module control_unit(INSTRUCTION, ALUOP, MUXIMMTYPE_SELECT, MUXPC_SELECT, MUXIMM_
 
             7'b1101111: begin #1                //JAl
                 ALUOP = 5'b00001;
-                MUXIMMTYPE_SELECT = 3'bxxx;
+                MUXIMMTYPE_SELECT = 3'b100;
                 MUXPC_SELECT = 1'b1;
                 MUXIMM_SELECT = 1'b1;
                 MUXJAL_SELECT = 1'b1;
