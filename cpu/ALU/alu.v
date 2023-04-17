@@ -12,7 +12,8 @@ module alu(DATA1, DATA2, RESULT, SELECT, EQ_FLAG, LT_FLAG, LTU_FLAG);
 	output reg [31:0] RESULT;                //Define 32bit output port (output is declared as reg type, as it is used in procedural block)
 	output EQ_FLAG, LT_FLAG, LTU_FLAG;       //Define output signals
     
-	wire[31:0] ADD, SUB,
+	wire[31:0] FORWARD,
+               ADD, SUB,
                SLL, 
                SLT, SLTU,
                XOR,
@@ -22,6 +23,8 @@ module alu(DATA1, DATA2, RESULT, SELECT, EQ_FLAG, LT_FLAG, LTU_FLAG);
 			   DIV, DIVU,
                REM, REMU;                                       
 	
+    wire[63:0] PRODUCT;
+    
     //Instructions
     assign #1 FORWARD = DATA2;          //Forward
     assign #2 ADD = DATA1 + DATA2;      //Addition
@@ -41,14 +44,20 @@ module alu(DATA1, DATA2, RESULT, SELECT, EQ_FLAG, LT_FLAG, LTU_FLAG);
     assign #1 AND = DATA1 & DATA2;      //Bitwise AND
     
 	assign #3 MUL = DATA1 * DATA2;                           //Multiplication
-    assign #3 MULH = DATA1 * DATA2;                          //Multiplication (Signed)
-    assign #3 MULHSU = $signed(DATA1) * $unsigned(DATA2);    //Multiplication (Signed x UnSigned)
-    assign #3 MULHU = $unsigned(DATA1) * $unsigned(DATA2);   //Multiplication (UnSigned)
+    
+    assign PRODUCT = DATA1 * DATA2;
+    assign #3 MULH = PRODUCT>>32;                            //Multiplication-Returns upper 32 bits
+    
+    assign PRODUCT = $signed(DATA1) * $unsigned(DATA2);
+    assign #3 MULHSU = PRODUCT>>32;                          //Multiplication-Returns upper 32 bits (Signed x UnSigned)
+
+    assign PRODUCT = $unsigned(DATA1) * $unsigned(DATA2);
+    assign #3 MULHU = PRODUCT>>32;                           //Multiplication-Returns upper 32 bits (UnSigned)
     
 	assign #3 DIV = DATA1 / DATA2;                           //Division
     assign #3 DIVU = $unsigned(DATA1) / $unsigned(DATA2);    //Division Unsigned
     assign #3 REM = DATA1 % DATA2;                           //Remainder
-    assign #3 REMU = DATA1 % DATA2;                          //Remainder Unsigned
+    assign #3 REMU = $unsigned(DATA1) % $unsigned(DATA2);    //Remainder Unsigned
     
     //Always block calls whenever a signal changes
 	always @(*)                          
@@ -84,7 +93,8 @@ module alu(DATA1, DATA2, RESULT, SELECT, EQ_FLAG, LT_FLAG, LTU_FLAG);
 	assign LTU_FLAG = SLTU[0];	    //Less than unsigned flag is used to check whether |DATA1|<|DATA2|          
 endmodule
 
-//Testbench of ALU
+/*
+//Testbench 1 of ALU
 module alu_tb();
     //Declarations of reg & wire
    	reg [31:0] OPERAND1, OPERAND2;
@@ -108,6 +118,10 @@ module alu_tb();
         OPERAND1 = 32'd20;
         OPERAND2 = 32'd10;
         
+        $display("FORWARD OPERATION");
+        ALUOP = 5'b00000;
+        #5         
+        
         $display("OPERAND1 + OPERAND2");
         ALUOP = 5'b00001;
         #5 
@@ -115,12 +129,139 @@ module alu_tb();
         $display("OPERAND1 - OPERAND2");
         ALUOP = 5'b00010;
         #5
-        
+ 
+        OPERAND1 = 32'd20;
+        OPERAND2 = 32'd2;
+       
+        $display("OPERAND1 << OPERAND2");
+        ALUOP = 5'b00011;
+        #5
+
+        $display("SET LESS THAN (WHEN OPERAND1>OPERAND2)");
+        ALUOP = 5'b00100;
+        #5
+
+        OPERAND1 = 32'd20;
+        OPERAND2 = 32'd25;
+
+        $display("SET LESS THAN (WHEN OPERAND1<OPERAND2)");
+        ALUOP = 5'b00100;
+        #5
+
         $display("OPERAND1 | OPERAND2");        
         ALUOP = 5'b01001;
         #5
         
         $display("OPERAND1 & OPERAND2"); 
         ALUOP = 5'b01010;
+    end		
+endmodule
+*/
+
+//Testbench 2 of ALU
+module alu_tb();
+    //Declarations of reg & wire
+   	reg [31:0] OPERAND1, OPERAND2;
+	reg [4:0] ALUOP;
+	wire [31:0] ALURESULT;
+	wire EQ_FLAG, LT_FLAG, LTU_FLAG;
+	 
+    //Instantiate ALU module
+	alu myalu(OPERAND1, OPERAND2, ALURESULT, ALUOP, EQ_FLAG, LT_FLAG, LTU_FLAG);
+    
+    initial
+    begin
+        OPERAND1 = 32'd20;
+        OPERAND2 = 32'd2;
+        
+        ALUOP = 5'b00000;
+        #5
+        $display("Test case 1: Forward operation");
+        $display("OPERAND1   : %d", OPERAND1);
+        $display("OPERAND2   : %d", OPERAND2);
+        $display("ALURESULT  : %d", ALURESULT);
+        
+        ALUOP = 5'b00001;
+        #5
+        $display("\nTest case 2: OPERAND1 + OPERAND2");
+        $display("OPERAND1   : %d", OPERAND1);
+        $display("OPERAND2   : %d", OPERAND2);
+        $display("ALURESULT  : %d", ALURESULT);        
+     
+        ALUOP = 5'b00010;
+        #5
+        $display("\nTest case 3: OPERAND1 - OPERAND2");
+        $display("OPERAND1   : %d", OPERAND1);
+        $display("OPERAND2   : %d", OPERAND2);
+        $display("ALURESULT  : %d", ALURESULT);      
+
+        ALUOP = 5'b00011;
+        #5
+        $display("\nTest case 4: OPERAND1 << OPERAND2");
+        $display("OPERAND1   : %b", OPERAND1);
+        $display("OPERAND2   : %d", OPERAND2);
+        $display("ALURESULT  : %b", ALURESULT);
+        
+        ALUOP = 5'b00100;
+        #5
+        $display("\nTest case 5: Set less than (When OPERAND1 > OPERAND2)");
+        $display("OPERAND1   : %d", OPERAND1);
+        $display("OPERAND2   : %d", OPERAND2);
+        $display("ALURESULT  : %d", ALURESULT);
+
+        OPERAND1 = 32'd2;
+        OPERAND2 = 32'd20;
+        
+        ALUOP = 5'b00100;
+        #5
+        $display("\nTest case 6: Set less than (When OPERAND1 < OPERAND2)");
+        $display("OPERAND1   : %d", OPERAND1);
+        $display("OPERAND2   : %d", OPERAND2);
+        $display("ALURESULT  : %d", ALURESULT);     
+
+
+        OPERAND1 = 32'd10;
+        OPERAND2 = 32'd20;
+        
+        ALUOP = 5'b01011;
+        #5
+        $display("\nTest case 6: MUL");
+        $display("OPERAND1   : %d", OPERAND1);
+        $display("OPERAND2   : %d", OPERAND2);
+        $display("ALURESULT  : %d", ALURESULT);   
+        $display("ALURESULT  : %b", ALURESULT); 
+ 
+        OPERAND1 = 32'd1;
+        OPERAND2 = 32'd4294967295;
+        
+        ALUOP = 5'b01011;
+        #5
+        $display("\nTest case 6: MUL");
+        $display("OPERAND1   : %d", OPERAND1);
+        $display("OPERAND2   : %d", OPERAND2);
+        $display("ALURESULT  : %d", ALURESULT);   
+        $display("ALURESULT  : %b", ALURESULT); 
+ 
+        OPERAND1 = 32'd10;
+        OPERAND2 = 32'd20;
+        
+        ALUOP = 5'b01100;
+        #5
+        $display("\nTest case 6: MULH");
+        $display("OPERAND1   : %d", OPERAND1);
+        $display("OPERAND2   : %d", OPERAND2);
+        $display("ALURESULT  : %d", ALURESULT);   
+        $display("ALURESULT  : %b", ALURESULT);     
+
+        OPERAND1 = 32'd4;
+        OPERAND2 = 32'd4294967295;
+        
+        ALUOP = 5'b01100;
+        #5
+        $display("\nTest case 6: MULH");
+        $display("OPERAND1   : %d", OPERAND1);
+        $display("OPERAND2   : %d", OPERAND2);
+        $display("ALURESULT  : %d", ALURESULT);   
+        $display("ALURESULT  : %b", ALURESULT);          
     end		
 endmodule
