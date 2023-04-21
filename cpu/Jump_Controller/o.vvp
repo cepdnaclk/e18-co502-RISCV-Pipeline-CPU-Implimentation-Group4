@@ -7,623 +7,623 @@
 :vpi_module "/usr/lib/x86_64-linux-gnu/ivl/vhdl_textio.vpi";
 :vpi_module "/usr/lib/x86_64-linux-gnu/ivl/v2005_math.vpi";
 :vpi_module "/usr/lib/x86_64-linux-gnu/ivl/va_math.vpi";
-S_0x7ffff12e2570 .scope module, "Jump_Controller_tb" "Jump_Controller_tb" 2 4;
+S_0x7fffcc2d4570 .scope module, "Jump_Controller_tb" "Jump_Controller_tb" 2 4;
  .timescale -9 -10;
-v0x7ffff134deb0_0 .var "BRANCH", 0 0;
-v0x7ffff134df70_0 .var "BRANCH_ADDR", 31 0;
-v0x7ffff134e010_0 .net "BRANCH_OR_JUMP_ADDR", 31 0, v0x7ffff134ad90_0;  1 drivers
-v0x7ffff134e0b0_0 .var "FUNC3", 2 0;
-v0x7ffff134e150_0 .var "JUMP", 0 0;
-v0x7ffff134e1f0_0 .var "JUMP_I", 31 0;
-v0x7ffff134e2c0_0 .net "PC_MUX_CONTROL", 0 0, v0x7ffff134b0f0_0;  1 drivers
-v0x7ffff134e390_0 .net "REG_FLUSH", 0 0, v0x7ffff134b1b0_0;  1 drivers
-v0x7ffff134e460_0 .var "SIGN", 0 0;
-v0x7ffff134e530_0 .var "UNSIGNED", 0 0;
-v0x7ffff134e600_0 .var "ZERO", 0 0;
-S_0x7ffff12e2700 .scope module, "dut" "Jump_Controller" 2 22, 3 3 0, S_0x7ffff12e2570;
+v0x7fffcc340d20_0 .var "BRANCH", 0 0;
+v0x7fffcc340de0_0 .var "BRANCH_ADDR", 31 0;
+v0x7fffcc340e80_0 .net "BRANCH_OR_JUMP_ADDR", 31 0, v0x7fffcc33dc00_0;  1 drivers
+v0x7fffcc340f20_0 .var "EQ_FLAG", 0 0;
+v0x7fffcc340fc0_0 .var "FUNC3", 2 0;
+v0x7fffcc341060_0 .var "JUMP", 0 0;
+v0x7fffcc341130_0 .var "JUMP_I", 31 0;
+v0x7fffcc341200_0 .var "LTU_FLAG", 0 0;
+v0x7fffcc3412d0_0 .var "LT_FLAG", 0 0;
+v0x7fffcc3413a0_0 .net "PC_MUX_CONTROL", 0 0, v0x7fffcc33e1a0_0;  1 drivers
+v0x7fffcc341470_0 .net "REG_FLUSH", 0 0, v0x7fffcc33e260_0;  1 drivers
+S_0x7fffcc2d4700 .scope module, "dut" "Jump_Controller" 2 22, 3 3 0, S_0x7fffcc2d4570;
  .timescale -9 -10;
     .port_info 0 /INPUT 32 "BRANCH_ADDR";
     .port_info 1 /INPUT 32 "JUMP_I";
     .port_info 2 /INPUT 3 "FUNC3";
     .port_info 3 /INPUT 1 "BRANCH";
     .port_info 4 /INPUT 1 "JUMP";
-    .port_info 5 /INPUT 1 "ZERO";
-    .port_info 6 /INPUT 1 "SIGN";
-    .port_info 7 /INPUT 1 "UNSIGNED";
+    .port_info 5 /INPUT 1 "EQ_FLAG";
+    .port_info 6 /INPUT 1 "LT_FLAG";
+    .port_info 7 /INPUT 1 "LTU_FLAG";
     .port_info 8 /OUTPUT 32 "BRANCH_OR_JUMP_ADDR";
     .port_info 9 /OUTPUT 1 "PC_MUX_CONTROL";
     .port_info 10 /OUTPUT 1 "REG_FLUSH";
-L_0x7ffff12d8c00 .functor NOT 1, L_0x7ffff134e6d0, C4<0>, C4<0>, C4<0>;
-L_0x7ffff12d8c70 .functor NOT 1, L_0x7ffff134e7f0, C4<0>, C4<0>, C4<0>;
-L_0x7ffff134e910 .functor AND 1, L_0x7ffff12d8c00, L_0x7ffff12d8c70, C4<1>, C4<1>;
-L_0x7ffff134eac0 .functor NOT 1, L_0x7ffff134ea20, C4<0>, C4<0>, C4<0>;
-L_0x7ffff134eb60 .functor AND 1, L_0x7ffff134e910, L_0x7ffff134eac0, C4<1>, C4<1>;
-L_0x7ffff134ec70/d .functor AND 1, L_0x7ffff134eb60, v0x7ffff134e600_0, C4<1>, C4<1>;
-L_0x7ffff134ec70 .delay 1 (10,10,10) L_0x7ffff134ec70/d;
-L_0x7ffff134efd0 .functor NOT 1, L_0x7ffff134ef30, C4<0>, C4<0>, C4<0>;
-L_0x7ffff134f090 .functor AND 1, L_0x7ffff134ee60, L_0x7ffff134efd0, C4<1>, C4<1>;
-L_0x7ffff134f2d0 .functor AND 1, L_0x7ffff134f090, L_0x7ffff134f1f0, C4<1>, C4<1>;
-L_0x7ffff134f3e0 .functor NOT 1, v0x7ffff134e460_0, C4<0>, C4<0>, C4<0>;
-L_0x7ffff134f500/d .functor AND 1, L_0x7ffff134f2d0, L_0x7ffff134f3e0, C4<1>, C4<1>;
-L_0x7ffff134f500 .delay 1 (10,10,10) L_0x7ffff134f500/d;
-L_0x7ffff134f700 .functor NOT 1, L_0x7ffff134f660, C4<0>, C4<0>, C4<0>;
-L_0x7ffff134f920 .functor NOT 1, L_0x7ffff134f830, C4<0>, C4<0>, C4<0>;
-L_0x7ffff134f9e0 .functor AND 1, L_0x7ffff134f700, L_0x7ffff134f920, C4<1>, C4<1>;
-L_0x7ffff134f7c0 .functor AND 1, L_0x7ffff134f9e0, L_0x7ffff134fb70, C4<1>, C4<1>;
-L_0x7ffff134fcb0 .functor NOT 1, v0x7ffff134e600_0, C4<0>, C4<0>, C4<0>;
-L_0x7ffff134fdb0/d .functor AND 1, L_0x7ffff134f7c0, L_0x7ffff134fcb0, C4<1>, C4<1>;
-L_0x7ffff134fdb0 .delay 1 (10,10,10) L_0x7ffff134fdb0/d;
-L_0x7ffff1350100 .functor NOT 1, L_0x7ffff1350060, C4<0>, C4<0>, C4<0>;
-L_0x7ffff1350210 .functor AND 1, L_0x7ffff134ff60, L_0x7ffff1350100, C4<1>, C4<1>;
-L_0x7ffff1350430 .functor NOT 1, L_0x7ffff1350320, C4<0>, C4<0>, C4<0>;
-L_0x7ffff13505a0 .functor AND 1, L_0x7ffff1350210, L_0x7ffff1350430, C4<1>, C4<1>;
-L_0x7ffff13506b0 .functor NOT 1, v0x7ffff134e600_0, C4<0>, C4<0>, C4<0>;
-L_0x7ffff13507e0 .functor AND 1, L_0x7ffff13505a0, L_0x7ffff13506b0, C4<1>, C4<1>;
-L_0x7ffff13508a0/d .functor AND 1, L_0x7ffff13507e0, v0x7ffff134e460_0, C4<1>, C4<1>;
-L_0x7ffff13508a0 .delay 1 (10,10,10) L_0x7ffff13508a0/d;
-L_0x7ffff13503c0 .functor AND 1, L_0x7ffff1350170, L_0x7ffff1350ad0, C4<1>, C4<1>;
-L_0x7ffff1350f40 .functor NOT 1, L_0x7ffff1350c90, C4<0>, C4<0>, C4<0>;
-L_0x7ffff13510e0 .functor AND 1, L_0x7ffff13503c0, L_0x7ffff1350f40, C4<1>, C4<1>;
-L_0x7ffff13511f0 .functor NOT 1, v0x7ffff134e600_0, C4<0>, C4<0>, C4<0>;
-L_0x7ffff1351350 .functor AND 1, L_0x7ffff13510e0, L_0x7ffff13511f0, C4<1>, C4<1>;
-L_0x7ffff1351460/d .functor AND 1, L_0x7ffff1351350, v0x7ffff134e530_0, C4<1>, C4<1>;
-L_0x7ffff1351460 .delay 1 (10,10,10) L_0x7ffff1351460/d;
-L_0x7ffff13518e0 .functor AND 1, L_0x7ffff1351710, L_0x7ffff1351840, C4<1>, C4<1>;
-L_0x7ffff1351b30 .functor AND 1, L_0x7ffff13518e0, L_0x7ffff13519f0, C4<1>, C4<1>;
-L_0x7ffff1351d50 .functor NOT 1, v0x7ffff134e530_0, C4<0>, C4<0>, C4<0>;
-L_0x7ffff1351dc0/d .functor AND 1, L_0x7ffff1351b30, L_0x7ffff1351d50, C4<1>, C4<1>;
-L_0x7ffff1351dc0 .delay 1 (10,10,10) L_0x7ffff1351dc0/d;
-v0x7ffff12d8de0_0 .net "BEQ", 0 0, L_0x7ffff134ec70;  1 drivers
-v0x7ffff1305a90_0 .net "BGE", 0 0, L_0x7ffff134f500;  1 drivers
-v0x7ffff134a8c0_0 .net "BGEU", 0 0, L_0x7ffff1351dc0;  1 drivers
-v0x7ffff134a960_0 .net "BLT", 0 0, L_0x7ffff13508a0;  1 drivers
-v0x7ffff134aa20_0 .net "BLTU", 0 0, L_0x7ffff1351460;  1 drivers
-v0x7ffff134ab30_0 .net "BNE", 0 0, L_0x7ffff134fdb0;  1 drivers
-v0x7ffff134abf0_0 .net "BRANCH", 0 0, v0x7ffff134deb0_0;  1 drivers
-v0x7ffff134acb0_0 .net "BRANCH_ADDR", 31 0, v0x7ffff134df70_0;  1 drivers
-v0x7ffff134ad90_0 .var "BRANCH_OR_JUMP_ADDR", 31 0;
-v0x7ffff134ae70_0 .net "FUNC3", 2 0, v0x7ffff134e0b0_0;  1 drivers
-v0x7ffff134af50_0 .net "JUMP", 0 0, v0x7ffff134e150_0;  1 drivers
-v0x7ffff134b010_0 .net "JUMP_I", 31 0, v0x7ffff134e1f0_0;  1 drivers
-v0x7ffff134b0f0_0 .var "PC_MUX_CONTROL", 0 0;
-v0x7ffff134b1b0_0 .var "REG_FLUSH", 0 0;
-v0x7ffff134b270_0 .net "SIGN", 0 0, v0x7ffff134e460_0;  1 drivers
-v0x7ffff134b330_0 .net "UNSIGNED", 0 0, v0x7ffff134e530_0;  1 drivers
-v0x7ffff134b3f0_0 .net "ZERO", 0 0, v0x7ffff134e600_0;  1 drivers
-v0x7ffff134b4b0_0 .net *"_ivl_1", 0 0, L_0x7ffff134e6d0;  1 drivers
-v0x7ffff134b590_0 .net *"_ivl_100", 0 0, L_0x7ffff1351d50;  1 drivers
-v0x7ffff134b670_0 .net *"_ivl_11", 0 0, L_0x7ffff134ea20;  1 drivers
-v0x7ffff134b750_0 .net *"_ivl_12", 0 0, L_0x7ffff134eac0;  1 drivers
-v0x7ffff134b830_0 .net *"_ivl_14", 0 0, L_0x7ffff134eb60;  1 drivers
-v0x7ffff134b910_0 .net *"_ivl_19", 0 0, L_0x7ffff134ee60;  1 drivers
-v0x7ffff134b9f0_0 .net *"_ivl_2", 0 0, L_0x7ffff12d8c00;  1 drivers
-v0x7ffff134bad0_0 .net *"_ivl_21", 0 0, L_0x7ffff134ef30;  1 drivers
-v0x7ffff134bbb0_0 .net *"_ivl_22", 0 0, L_0x7ffff134efd0;  1 drivers
-v0x7ffff134bc90_0 .net *"_ivl_24", 0 0, L_0x7ffff134f090;  1 drivers
-v0x7ffff134bd70_0 .net *"_ivl_27", 0 0, L_0x7ffff134f1f0;  1 drivers
-v0x7ffff134be50_0 .net *"_ivl_28", 0 0, L_0x7ffff134f2d0;  1 drivers
-v0x7ffff134bf30_0 .net *"_ivl_30", 0 0, L_0x7ffff134f3e0;  1 drivers
-v0x7ffff134c010_0 .net *"_ivl_35", 0 0, L_0x7ffff134f660;  1 drivers
-v0x7ffff134c0f0_0 .net *"_ivl_36", 0 0, L_0x7ffff134f700;  1 drivers
-v0x7ffff134c1d0_0 .net *"_ivl_39", 0 0, L_0x7ffff134f830;  1 drivers
-v0x7ffff134c2b0_0 .net *"_ivl_40", 0 0, L_0x7ffff134f920;  1 drivers
-v0x7ffff134c390_0 .net *"_ivl_42", 0 0, L_0x7ffff134f9e0;  1 drivers
-v0x7ffff134c470_0 .net *"_ivl_45", 0 0, L_0x7ffff134fb70;  1 drivers
-v0x7ffff134c550_0 .net *"_ivl_46", 0 0, L_0x7ffff134f7c0;  1 drivers
-v0x7ffff134c630_0 .net *"_ivl_48", 0 0, L_0x7ffff134fcb0;  1 drivers
-v0x7ffff134c710_0 .net *"_ivl_5", 0 0, L_0x7ffff134e7f0;  1 drivers
-v0x7ffff134c7f0_0 .net *"_ivl_53", 0 0, L_0x7ffff134ff60;  1 drivers
-v0x7ffff134c8d0_0 .net *"_ivl_55", 0 0, L_0x7ffff1350060;  1 drivers
-v0x7ffff134c9b0_0 .net *"_ivl_56", 0 0, L_0x7ffff1350100;  1 drivers
-v0x7ffff134ca90_0 .net *"_ivl_58", 0 0, L_0x7ffff1350210;  1 drivers
-v0x7ffff134cb70_0 .net *"_ivl_6", 0 0, L_0x7ffff12d8c70;  1 drivers
-v0x7ffff134cc50_0 .net *"_ivl_61", 0 0, L_0x7ffff1350320;  1 drivers
-v0x7ffff134cd30_0 .net *"_ivl_62", 0 0, L_0x7ffff1350430;  1 drivers
-v0x7ffff134ce10_0 .net *"_ivl_64", 0 0, L_0x7ffff13505a0;  1 drivers
-v0x7ffff134cef0_0 .net *"_ivl_66", 0 0, L_0x7ffff13506b0;  1 drivers
-v0x7ffff134cfd0_0 .net *"_ivl_68", 0 0, L_0x7ffff13507e0;  1 drivers
-v0x7ffff134d0b0_0 .net *"_ivl_73", 0 0, L_0x7ffff1350170;  1 drivers
-v0x7ffff134d190_0 .net *"_ivl_75", 0 0, L_0x7ffff1350ad0;  1 drivers
-v0x7ffff134d270_0 .net *"_ivl_76", 0 0, L_0x7ffff13503c0;  1 drivers
-v0x7ffff134d350_0 .net *"_ivl_79", 0 0, L_0x7ffff1350c90;  1 drivers
-v0x7ffff134d430_0 .net *"_ivl_8", 0 0, L_0x7ffff134e910;  1 drivers
-v0x7ffff134d510_0 .net *"_ivl_80", 0 0, L_0x7ffff1350f40;  1 drivers
-v0x7ffff134d5f0_0 .net *"_ivl_82", 0 0, L_0x7ffff13510e0;  1 drivers
-v0x7ffff134d6d0_0 .net *"_ivl_84", 0 0, L_0x7ffff13511f0;  1 drivers
-v0x7ffff134d7b0_0 .net *"_ivl_86", 0 0, L_0x7ffff1351350;  1 drivers
-v0x7ffff134d890_0 .net *"_ivl_91", 0 0, L_0x7ffff1351710;  1 drivers
-v0x7ffff134d970_0 .net *"_ivl_93", 0 0, L_0x7ffff1351840;  1 drivers
-v0x7ffff134da50_0 .net *"_ivl_94", 0 0, L_0x7ffff13518e0;  1 drivers
-v0x7ffff134db30_0 .net *"_ivl_97", 0 0, L_0x7ffff13519f0;  1 drivers
-v0x7ffff134dc10_0 .net *"_ivl_98", 0 0, L_0x7ffff1351b30;  1 drivers
-E_0x7ffff12dba60 .event edge, v0x7ffff134af50_0, v0x7ffff134b010_0, v0x7ffff134acb0_0;
-E_0x7ffff1301730/0 .event edge, v0x7ffff134abf0_0, v0x7ffff12d8de0_0, v0x7ffff1305a90_0, v0x7ffff134ab30_0;
-E_0x7ffff1301730/1 .event edge, v0x7ffff134a960_0, v0x7ffff134aa20_0, v0x7ffff134a8c0_0, v0x7ffff134af50_0;
-E_0x7ffff1301730 .event/or E_0x7ffff1301730/0, E_0x7ffff1301730/1;
-L_0x7ffff134e6d0 .part v0x7ffff134e0b0_0, 2, 1;
-L_0x7ffff134e7f0 .part v0x7ffff134e0b0_0, 1, 1;
-L_0x7ffff134ea20 .part v0x7ffff134e0b0_0, 0, 1;
-L_0x7ffff134ee60 .part v0x7ffff134e0b0_0, 2, 1;
-L_0x7ffff134ef30 .part v0x7ffff134e0b0_0, 1, 1;
-L_0x7ffff134f1f0 .part v0x7ffff134e0b0_0, 0, 1;
-L_0x7ffff134f660 .part v0x7ffff134e0b0_0, 2, 1;
-L_0x7ffff134f830 .part v0x7ffff134e0b0_0, 1, 1;
-L_0x7ffff134fb70 .part v0x7ffff134e0b0_0, 0, 1;
-L_0x7ffff134ff60 .part v0x7ffff134e0b0_0, 2, 1;
-L_0x7ffff1350060 .part v0x7ffff134e0b0_0, 1, 1;
-L_0x7ffff1350320 .part v0x7ffff134e0b0_0, 0, 1;
-L_0x7ffff1350170 .part v0x7ffff134e0b0_0, 2, 1;
-L_0x7ffff1350ad0 .part v0x7ffff134e0b0_0, 1, 1;
-L_0x7ffff1350c90 .part v0x7ffff134e0b0_0, 0, 1;
-L_0x7ffff1351710 .part v0x7ffff134e0b0_0, 2, 1;
-L_0x7ffff1351840 .part v0x7ffff134e0b0_0, 1, 1;
-L_0x7ffff13519f0 .part v0x7ffff134e0b0_0, 0, 1;
-    .scope S_0x7ffff12e2700;
+L_0x7fffcc2cac00 .functor NOT 1, L_0x7fffcc341540, C4<0>, C4<0>, C4<0>;
+L_0x7fffcc2cac70 .functor NOT 1, L_0x7fffcc341660, C4<0>, C4<0>, C4<0>;
+L_0x7fffcc341780 .functor AND 1, L_0x7fffcc2cac00, L_0x7fffcc2cac70, C4<1>, C4<1>;
+L_0x7fffcc341930 .functor NOT 1, L_0x7fffcc341890, C4<0>, C4<0>, C4<0>;
+L_0x7fffcc3419d0 .functor AND 1, L_0x7fffcc341780, L_0x7fffcc341930, C4<1>, C4<1>;
+L_0x7fffcc341ae0/d .functor AND 1, L_0x7fffcc3419d0, v0x7fffcc340f20_0, C4<1>, C4<1>;
+L_0x7fffcc341ae0 .delay 1 (10,10,10) L_0x7fffcc341ae0/d;
+L_0x7fffcc341e40 .functor NOT 1, L_0x7fffcc341da0, C4<0>, C4<0>, C4<0>;
+L_0x7fffcc341f00 .functor AND 1, L_0x7fffcc341cd0, L_0x7fffcc341e40, C4<1>, C4<1>;
+L_0x7fffcc342140 .functor AND 1, L_0x7fffcc341f00, L_0x7fffcc342060, C4<1>, C4<1>;
+L_0x7fffcc342250 .functor NOT 1, v0x7fffcc3412d0_0, C4<0>, C4<0>, C4<0>;
+L_0x7fffcc342370/d .functor AND 1, L_0x7fffcc342140, L_0x7fffcc342250, C4<1>, C4<1>;
+L_0x7fffcc342370 .delay 1 (10,10,10) L_0x7fffcc342370/d;
+L_0x7fffcc342570 .functor NOT 1, L_0x7fffcc3424d0, C4<0>, C4<0>, C4<0>;
+L_0x7fffcc342790 .functor NOT 1, L_0x7fffcc3426a0, C4<0>, C4<0>, C4<0>;
+L_0x7fffcc342850 .functor AND 1, L_0x7fffcc342570, L_0x7fffcc342790, C4<1>, C4<1>;
+L_0x7fffcc342630 .functor AND 1, L_0x7fffcc342850, L_0x7fffcc3429e0, C4<1>, C4<1>;
+L_0x7fffcc342b20 .functor NOT 1, v0x7fffcc340f20_0, C4<0>, C4<0>, C4<0>;
+L_0x7fffcc342c20/d .functor AND 1, L_0x7fffcc342630, L_0x7fffcc342b20, C4<1>, C4<1>;
+L_0x7fffcc342c20 .delay 1 (10,10,10) L_0x7fffcc342c20/d;
+L_0x7fffcc342f70 .functor NOT 1, L_0x7fffcc342ed0, C4<0>, C4<0>, C4<0>;
+L_0x7fffcc343080 .functor AND 1, L_0x7fffcc342dd0, L_0x7fffcc342f70, C4<1>, C4<1>;
+L_0x7fffcc3432a0 .functor NOT 1, L_0x7fffcc343190, C4<0>, C4<0>, C4<0>;
+L_0x7fffcc343410 .functor AND 1, L_0x7fffcc343080, L_0x7fffcc3432a0, C4<1>, C4<1>;
+L_0x7fffcc343520 .functor NOT 1, v0x7fffcc340f20_0, C4<0>, C4<0>, C4<0>;
+L_0x7fffcc343650 .functor AND 1, L_0x7fffcc343410, L_0x7fffcc343520, C4<1>, C4<1>;
+L_0x7fffcc343710/d .functor AND 1, L_0x7fffcc343650, v0x7fffcc3412d0_0, C4<1>, C4<1>;
+L_0x7fffcc343710 .delay 1 (10,10,10) L_0x7fffcc343710/d;
+L_0x7fffcc343230 .functor AND 1, L_0x7fffcc342fe0, L_0x7fffcc343940, C4<1>, C4<1>;
+L_0x7fffcc343db0 .functor NOT 1, L_0x7fffcc343b00, C4<0>, C4<0>, C4<0>;
+L_0x7fffcc343f50 .functor AND 1, L_0x7fffcc343230, L_0x7fffcc343db0, C4<1>, C4<1>;
+L_0x7fffcc344060 .functor NOT 1, v0x7fffcc340f20_0, C4<0>, C4<0>, C4<0>;
+L_0x7fffcc3441c0 .functor AND 1, L_0x7fffcc343f50, L_0x7fffcc344060, C4<1>, C4<1>;
+L_0x7fffcc3442d0/d .functor AND 1, L_0x7fffcc3441c0, v0x7fffcc341200_0, C4<1>, C4<1>;
+L_0x7fffcc3442d0 .delay 1 (10,10,10) L_0x7fffcc3442d0/d;
+L_0x7fffcc344750 .functor AND 1, L_0x7fffcc344580, L_0x7fffcc3446b0, C4<1>, C4<1>;
+L_0x7fffcc3449a0 .functor AND 1, L_0x7fffcc344750, L_0x7fffcc344860, C4<1>, C4<1>;
+L_0x7fffcc344bc0 .functor NOT 1, v0x7fffcc341200_0, C4<0>, C4<0>, C4<0>;
+L_0x7fffcc344c30/d .functor AND 1, L_0x7fffcc3449a0, L_0x7fffcc344bc0, C4<1>, C4<1>;
+L_0x7fffcc344c30 .delay 1 (10,10,10) L_0x7fffcc344c30/d;
+v0x7fffcc309d30_0 .net "BEQ", 0 0, L_0x7fffcc341ae0;  1 drivers
+v0x7fffcc2cade0_0 .net "BGE", 0 0, L_0x7fffcc342370;  1 drivers
+v0x7fffcc2f7a90_0 .net "BGEU", 0 0, L_0x7fffcc344c30;  1 drivers
+v0x7fffcc33d7d0_0 .net "BLT", 0 0, L_0x7fffcc343710;  1 drivers
+v0x7fffcc33d890_0 .net "BLTU", 0 0, L_0x7fffcc3442d0;  1 drivers
+v0x7fffcc33d9a0_0 .net "BNE", 0 0, L_0x7fffcc342c20;  1 drivers
+v0x7fffcc33da60_0 .net "BRANCH", 0 0, v0x7fffcc340d20_0;  1 drivers
+v0x7fffcc33db20_0 .net "BRANCH_ADDR", 31 0, v0x7fffcc340de0_0;  1 drivers
+v0x7fffcc33dc00_0 .var "BRANCH_OR_JUMP_ADDR", 31 0;
+v0x7fffcc33dce0_0 .net "EQ_FLAG", 0 0, v0x7fffcc340f20_0;  1 drivers
+v0x7fffcc33dda0_0 .net "FUNC3", 2 0, v0x7fffcc340fc0_0;  1 drivers
+v0x7fffcc33de80_0 .net "JUMP", 0 0, v0x7fffcc341060_0;  1 drivers
+v0x7fffcc33df40_0 .net "JUMP_I", 31 0, v0x7fffcc341130_0;  1 drivers
+v0x7fffcc33e020_0 .net "LTU_FLAG", 0 0, v0x7fffcc341200_0;  1 drivers
+v0x7fffcc33e0e0_0 .net "LT_FLAG", 0 0, v0x7fffcc3412d0_0;  1 drivers
+v0x7fffcc33e1a0_0 .var "PC_MUX_CONTROL", 0 0;
+v0x7fffcc33e260_0 .var "REG_FLUSH", 0 0;
+v0x7fffcc33e320_0 .net *"_ivl_1", 0 0, L_0x7fffcc341540;  1 drivers
+v0x7fffcc33e400_0 .net *"_ivl_100", 0 0, L_0x7fffcc344bc0;  1 drivers
+v0x7fffcc33e4e0_0 .net *"_ivl_11", 0 0, L_0x7fffcc341890;  1 drivers
+v0x7fffcc33e5c0_0 .net *"_ivl_12", 0 0, L_0x7fffcc341930;  1 drivers
+v0x7fffcc33e6a0_0 .net *"_ivl_14", 0 0, L_0x7fffcc3419d0;  1 drivers
+v0x7fffcc33e780_0 .net *"_ivl_19", 0 0, L_0x7fffcc341cd0;  1 drivers
+v0x7fffcc33e860_0 .net *"_ivl_2", 0 0, L_0x7fffcc2cac00;  1 drivers
+v0x7fffcc33e940_0 .net *"_ivl_21", 0 0, L_0x7fffcc341da0;  1 drivers
+v0x7fffcc33ea20_0 .net *"_ivl_22", 0 0, L_0x7fffcc341e40;  1 drivers
+v0x7fffcc33eb00_0 .net *"_ivl_24", 0 0, L_0x7fffcc341f00;  1 drivers
+v0x7fffcc33ebe0_0 .net *"_ivl_27", 0 0, L_0x7fffcc342060;  1 drivers
+v0x7fffcc33ecc0_0 .net *"_ivl_28", 0 0, L_0x7fffcc342140;  1 drivers
+v0x7fffcc33eda0_0 .net *"_ivl_30", 0 0, L_0x7fffcc342250;  1 drivers
+v0x7fffcc33ee80_0 .net *"_ivl_35", 0 0, L_0x7fffcc3424d0;  1 drivers
+v0x7fffcc33ef60_0 .net *"_ivl_36", 0 0, L_0x7fffcc342570;  1 drivers
+v0x7fffcc33f040_0 .net *"_ivl_39", 0 0, L_0x7fffcc3426a0;  1 drivers
+v0x7fffcc33f120_0 .net *"_ivl_40", 0 0, L_0x7fffcc342790;  1 drivers
+v0x7fffcc33f200_0 .net *"_ivl_42", 0 0, L_0x7fffcc342850;  1 drivers
+v0x7fffcc33f2e0_0 .net *"_ivl_45", 0 0, L_0x7fffcc3429e0;  1 drivers
+v0x7fffcc33f3c0_0 .net *"_ivl_46", 0 0, L_0x7fffcc342630;  1 drivers
+v0x7fffcc33f4a0_0 .net *"_ivl_48", 0 0, L_0x7fffcc342b20;  1 drivers
+v0x7fffcc33f580_0 .net *"_ivl_5", 0 0, L_0x7fffcc341660;  1 drivers
+v0x7fffcc33f660_0 .net *"_ivl_53", 0 0, L_0x7fffcc342dd0;  1 drivers
+v0x7fffcc33f740_0 .net *"_ivl_55", 0 0, L_0x7fffcc342ed0;  1 drivers
+v0x7fffcc33f820_0 .net *"_ivl_56", 0 0, L_0x7fffcc342f70;  1 drivers
+v0x7fffcc33f900_0 .net *"_ivl_58", 0 0, L_0x7fffcc343080;  1 drivers
+v0x7fffcc33f9e0_0 .net *"_ivl_6", 0 0, L_0x7fffcc2cac70;  1 drivers
+v0x7fffcc33fac0_0 .net *"_ivl_61", 0 0, L_0x7fffcc343190;  1 drivers
+v0x7fffcc33fba0_0 .net *"_ivl_62", 0 0, L_0x7fffcc3432a0;  1 drivers
+v0x7fffcc33fc80_0 .net *"_ivl_64", 0 0, L_0x7fffcc343410;  1 drivers
+v0x7fffcc33fd60_0 .net *"_ivl_66", 0 0, L_0x7fffcc343520;  1 drivers
+v0x7fffcc33fe40_0 .net *"_ivl_68", 0 0, L_0x7fffcc343650;  1 drivers
+v0x7fffcc33ff20_0 .net *"_ivl_73", 0 0, L_0x7fffcc342fe0;  1 drivers
+v0x7fffcc340000_0 .net *"_ivl_75", 0 0, L_0x7fffcc343940;  1 drivers
+v0x7fffcc3400e0_0 .net *"_ivl_76", 0 0, L_0x7fffcc343230;  1 drivers
+v0x7fffcc3401c0_0 .net *"_ivl_79", 0 0, L_0x7fffcc343b00;  1 drivers
+v0x7fffcc3402a0_0 .net *"_ivl_8", 0 0, L_0x7fffcc341780;  1 drivers
+v0x7fffcc340380_0 .net *"_ivl_80", 0 0, L_0x7fffcc343db0;  1 drivers
+v0x7fffcc340460_0 .net *"_ivl_82", 0 0, L_0x7fffcc343f50;  1 drivers
+v0x7fffcc340540_0 .net *"_ivl_84", 0 0, L_0x7fffcc344060;  1 drivers
+v0x7fffcc340620_0 .net *"_ivl_86", 0 0, L_0x7fffcc3441c0;  1 drivers
+v0x7fffcc340700_0 .net *"_ivl_91", 0 0, L_0x7fffcc344580;  1 drivers
+v0x7fffcc3407e0_0 .net *"_ivl_93", 0 0, L_0x7fffcc3446b0;  1 drivers
+v0x7fffcc3408c0_0 .net *"_ivl_94", 0 0, L_0x7fffcc344750;  1 drivers
+v0x7fffcc3409a0_0 .net *"_ivl_97", 0 0, L_0x7fffcc344860;  1 drivers
+v0x7fffcc340a80_0 .net *"_ivl_98", 0 0, L_0x7fffcc3449a0;  1 drivers
+E_0x7fffcc2ce050 .event edge, v0x7fffcc33de80_0, v0x7fffcc33df40_0, v0x7fffcc33db20_0;
+E_0x7fffcc2f3730/0 .event edge, v0x7fffcc33da60_0, v0x7fffcc309d30_0, v0x7fffcc2cade0_0, v0x7fffcc33d9a0_0;
+E_0x7fffcc2f3730/1 .event edge, v0x7fffcc33d7d0_0, v0x7fffcc33d890_0, v0x7fffcc2f7a90_0, v0x7fffcc33de80_0;
+E_0x7fffcc2f3730 .event/or E_0x7fffcc2f3730/0, E_0x7fffcc2f3730/1;
+L_0x7fffcc341540 .part v0x7fffcc340fc0_0, 2, 1;
+L_0x7fffcc341660 .part v0x7fffcc340fc0_0, 1, 1;
+L_0x7fffcc341890 .part v0x7fffcc340fc0_0, 0, 1;
+L_0x7fffcc341cd0 .part v0x7fffcc340fc0_0, 2, 1;
+L_0x7fffcc341da0 .part v0x7fffcc340fc0_0, 1, 1;
+L_0x7fffcc342060 .part v0x7fffcc340fc0_0, 0, 1;
+L_0x7fffcc3424d0 .part v0x7fffcc340fc0_0, 2, 1;
+L_0x7fffcc3426a0 .part v0x7fffcc340fc0_0, 1, 1;
+L_0x7fffcc3429e0 .part v0x7fffcc340fc0_0, 0, 1;
+L_0x7fffcc342dd0 .part v0x7fffcc340fc0_0, 2, 1;
+L_0x7fffcc342ed0 .part v0x7fffcc340fc0_0, 1, 1;
+L_0x7fffcc343190 .part v0x7fffcc340fc0_0, 0, 1;
+L_0x7fffcc342fe0 .part v0x7fffcc340fc0_0, 2, 1;
+L_0x7fffcc343940 .part v0x7fffcc340fc0_0, 1, 1;
+L_0x7fffcc343b00 .part v0x7fffcc340fc0_0, 0, 1;
+L_0x7fffcc344580 .part v0x7fffcc340fc0_0, 2, 1;
+L_0x7fffcc3446b0 .part v0x7fffcc340fc0_0, 1, 1;
+L_0x7fffcc344860 .part v0x7fffcc340fc0_0, 0, 1;
+    .scope S_0x7fffcc2d4700;
 T_0 ;
-    %wait E_0x7ffff1301730;
-    %load/vec4 v0x7ffff134abf0_0;
-    %load/vec4 v0x7ffff12d8de0_0;
-    %load/vec4 v0x7ffff1305a90_0;
+    %wait E_0x7fffcc2f3730;
+    %load/vec4 v0x7fffcc33da60_0;
+    %load/vec4 v0x7fffcc309d30_0;
+    %load/vec4 v0x7fffcc2cade0_0;
     %or;
-    %load/vec4 v0x7ffff134ab30_0;
+    %load/vec4 v0x7fffcc33d9a0_0;
     %or;
-    %load/vec4 v0x7ffff134a960_0;
+    %load/vec4 v0x7fffcc33d7d0_0;
     %or;
-    %load/vec4 v0x7ffff134aa20_0;
+    %load/vec4 v0x7fffcc33d890_0;
     %or;
-    %load/vec4 v0x7ffff134a8c0_0;
+    %load/vec4 v0x7fffcc2f7a90_0;
     %or;
     %and;
-    %load/vec4 v0x7ffff134af50_0;
+    %load/vec4 v0x7fffcc33de80_0;
     %or;
     %cmpi/e 1, 0, 1;
     %jmp/0xz  T_0.0, 4;
     %pushi/vec4 1, 0, 1;
-    %store/vec4 v0x7ffff134b0f0_0, 0, 1;
+    %store/vec4 v0x7fffcc33e1a0_0, 0, 1;
     %pushi/vec4 1, 0, 1;
-    %store/vec4 v0x7ffff134b1b0_0, 0, 1;
+    %store/vec4 v0x7fffcc33e260_0, 0, 1;
     %jmp T_0.1;
 T_0.0 ;
     %pushi/vec4 0, 0, 1;
-    %store/vec4 v0x7ffff134b0f0_0, 0, 1;
+    %store/vec4 v0x7fffcc33e1a0_0, 0, 1;
     %pushi/vec4 0, 0, 1;
-    %store/vec4 v0x7ffff134b1b0_0, 0, 1;
+    %store/vec4 v0x7fffcc33e260_0, 0, 1;
 T_0.1 ;
     %jmp T_0;
     .thread T_0, $push;
-    .scope S_0x7ffff12e2700;
+    .scope S_0x7fffcc2d4700;
 T_1 ;
-    %wait E_0x7ffff12dba60;
-    %load/vec4 v0x7ffff134af50_0;
+    %wait E_0x7fffcc2ce050;
+    %load/vec4 v0x7fffcc33de80_0;
     %cmpi/e 1, 0, 1;
     %jmp/0xz  T_1.0, 4;
-    %load/vec4 v0x7ffff134b010_0;
-    %store/vec4 v0x7ffff134ad90_0, 0, 32;
+    %load/vec4 v0x7fffcc33df40_0;
+    %store/vec4 v0x7fffcc33dc00_0, 0, 32;
     %jmp T_1.1;
 T_1.0 ;
-    %load/vec4 v0x7ffff134acb0_0;
-    %store/vec4 v0x7ffff134ad90_0, 0, 32;
+    %load/vec4 v0x7fffcc33db20_0;
+    %store/vec4 v0x7fffcc33dc00_0, 0, 32;
 T_1.1 ;
     %jmp T_1;
     .thread T_1, $push;
-    .scope S_0x7ffff12e2570;
+    .scope S_0x7fffcc2d4570;
 T_2 ;
     %delay 100, 0;
     %pushi/vec4 4096, 0, 32;
-    %store/vec4 v0x7ffff134df70_0, 0, 32;
+    %store/vec4 v0x7fffcc340de0_0, 0, 32;
     %delay 100, 0;
     %pushi/vec4 8192, 0, 32;
-    %store/vec4 v0x7ffff134e1f0_0, 0, 32;
+    %store/vec4 v0x7fffcc341130_0, 0, 32;
     %delay 100, 0;
     %pushi/vec4 7, 7, 3;
-    %store/vec4 v0x7ffff134e0b0_0, 0, 3;
+    %store/vec4 v0x7fffcc340fc0_0, 0, 3;
     %delay 100, 0;
     %pushi/vec4 0, 0, 1;
-    %store/vec4 v0x7ffff134deb0_0, 0, 1;
+    %store/vec4 v0x7fffcc340d20_0, 0, 1;
     %delay 100, 0;
     %pushi/vec4 1, 0, 1;
-    %store/vec4 v0x7ffff134e150_0, 0, 1;
+    %store/vec4 v0x7fffcc341060_0, 0, 1;
     %delay 100, 0;
     %pushi/vec4 1, 1, 1;
-    %store/vec4 v0x7ffff134e600_0, 0, 1;
+    %store/vec4 v0x7fffcc340f20_0, 0, 1;
     %delay 100, 0;
     %pushi/vec4 1, 1, 1;
-    %store/vec4 v0x7ffff134e460_0, 0, 1;
+    %store/vec4 v0x7fffcc3412d0_0, 0, 1;
     %delay 100, 0;
     %pushi/vec4 1, 1, 1;
-    %store/vec4 v0x7ffff134e530_0, 0, 1;
+    %store/vec4 v0x7fffcc341200_0, 0, 1;
     %delay 100, 0;
-    %vpi_call 2 47 "$display", "Test  1 ( JUMP ): BRANCH_ADDR = %h, JUMP_I = %H, BRANCH = %b, JUMP = %b, ZERO = %b, SIGN = %b, UNSIGNED = %b, BRANCH_OR_JUMP_ADDR = %h, PC_MUX_CONTROL = %b, REG_FLUSH = %b", v0x7ffff134df70_0, v0x7ffff134e1f0_0, v0x7ffff134deb0_0, v0x7ffff134e150_0, v0x7ffff134e600_0, v0x7ffff134e460_0, v0x7ffff134e530_0, v0x7ffff134e010_0, v0x7ffff134e2c0_0, v0x7ffff134e390_0 {0 0 0};
+    %vpi_call 2 47 "$display", "Test  1 ( JUMP ): BRANCH_ADDR = %h, JUMP_I = %H, BRANCH = %b, JUMP = %b, EQ_FLAG = %b, LT_FLAG = %b, LTU_FLAG = %b, BRANCH_OR_JUMP_ADDR = %h, PC_MUX_CONTROL = %b, REG_FLUSH = %b", v0x7fffcc340de0_0, v0x7fffcc341130_0, v0x7fffcc340d20_0, v0x7fffcc341060_0, v0x7fffcc340f20_0, v0x7fffcc3412d0_0, v0x7fffcc341200_0, v0x7fffcc340e80_0, v0x7fffcc3413a0_0, v0x7fffcc341470_0 {0 0 0};
     %delay 100, 0;
     %pushi/vec4 4096, 0, 32;
-    %store/vec4 v0x7ffff134df70_0, 0, 32;
+    %store/vec4 v0x7fffcc340de0_0, 0, 32;
     %delay 100, 0;
     %pushi/vec4 8192, 0, 32;
-    %store/vec4 v0x7ffff134e1f0_0, 0, 32;
+    %store/vec4 v0x7fffcc341130_0, 0, 32;
     %delay 100, 0;
     %pushi/vec4 0, 0, 3;
-    %store/vec4 v0x7ffff134e0b0_0, 0, 3;
+    %store/vec4 v0x7fffcc340fc0_0, 0, 3;
     %delay 100, 0;
     %pushi/vec4 1, 0, 1;
-    %store/vec4 v0x7ffff134deb0_0, 0, 1;
+    %store/vec4 v0x7fffcc340d20_0, 0, 1;
     %delay 100, 0;
     %pushi/vec4 0, 0, 1;
-    %store/vec4 v0x7ffff134e150_0, 0, 1;
+    %store/vec4 v0x7fffcc341060_0, 0, 1;
     %delay 100, 0;
     %pushi/vec4 1, 0, 1;
-    %store/vec4 v0x7ffff134e600_0, 0, 1;
+    %store/vec4 v0x7fffcc340f20_0, 0, 1;
     %delay 100, 0;
     %pushi/vec4 1, 1, 1;
-    %store/vec4 v0x7ffff134e460_0, 0, 1;
+    %store/vec4 v0x7fffcc3412d0_0, 0, 1;
     %delay 100, 0;
     %pushi/vec4 1, 1, 1;
-    %store/vec4 v0x7ffff134e530_0, 0, 1;
+    %store/vec4 v0x7fffcc341200_0, 0, 1;
     %delay 100, 0;
-    %vpi_call 2 59 "$display", "Test  2 (BEQ -T): BRANCH_ADDR = %h, JUMP_I = %H, BRANCH = %b, JUMP = %b, ZERO = %b, SIGN = %b, UNSIGNED = %b, BRANCH_OR_JUMP_ADDR = %h, PC_MUX_CONTROL = %b, REG_FLUSH = %b", v0x7ffff134df70_0, v0x7ffff134e1f0_0, v0x7ffff134deb0_0, v0x7ffff134e150_0, v0x7ffff134e600_0, v0x7ffff134e460_0, v0x7ffff134e530_0, v0x7ffff134e010_0, v0x7ffff134e2c0_0, v0x7ffff134e390_0 {0 0 0};
+    %vpi_call 2 59 "$display", "Test  2 (BEQ -T): BRANCH_ADDR = %h, JUMP_I = %H, BRANCH = %b, JUMP = %b, EQ_FLAG = %b, LT_FLAG = %b, LTU_FLAG = %b, BRANCH_OR_JUMP_ADDR = %h, PC_MUX_CONTROL = %b, REG_FLUSH = %b", v0x7fffcc340de0_0, v0x7fffcc341130_0, v0x7fffcc340d20_0, v0x7fffcc341060_0, v0x7fffcc340f20_0, v0x7fffcc3412d0_0, v0x7fffcc341200_0, v0x7fffcc340e80_0, v0x7fffcc3413a0_0, v0x7fffcc341470_0 {0 0 0};
     %delay 100, 0;
     %pushi/vec4 4096, 0, 32;
-    %store/vec4 v0x7ffff134df70_0, 0, 32;
+    %store/vec4 v0x7fffcc340de0_0, 0, 32;
     %delay 100, 0;
     %pushi/vec4 8192, 0, 32;
-    %store/vec4 v0x7ffff134e1f0_0, 0, 32;
+    %store/vec4 v0x7fffcc341130_0, 0, 32;
     %delay 100, 0;
     %pushi/vec4 0, 0, 3;
-    %store/vec4 v0x7ffff134e0b0_0, 0, 3;
+    %store/vec4 v0x7fffcc340fc0_0, 0, 3;
     %delay 100, 0;
     %pushi/vec4 1, 0, 1;
-    %store/vec4 v0x7ffff134deb0_0, 0, 1;
+    %store/vec4 v0x7fffcc340d20_0, 0, 1;
     %delay 100, 0;
     %pushi/vec4 0, 0, 1;
-    %store/vec4 v0x7ffff134e150_0, 0, 1;
+    %store/vec4 v0x7fffcc341060_0, 0, 1;
     %delay 100, 0;
     %pushi/vec4 0, 0, 1;
-    %store/vec4 v0x7ffff134e600_0, 0, 1;
+    %store/vec4 v0x7fffcc340f20_0, 0, 1;
     %delay 100, 0;
     %pushi/vec4 1, 1, 1;
-    %store/vec4 v0x7ffff134e460_0, 0, 1;
+    %store/vec4 v0x7fffcc3412d0_0, 0, 1;
     %delay 100, 0;
     %pushi/vec4 1, 1, 1;
-    %store/vec4 v0x7ffff134e530_0, 0, 1;
+    %store/vec4 v0x7fffcc341200_0, 0, 1;
     %delay 100, 0;
-    %vpi_call 2 70 "$display", "Test  3 (BEQ -F): BRANCH_ADDR = %h, JUMP_I = %H, BRANCH = %b, JUMP = %b, ZERO = %b, SIGN = %b, UNSIGNED = %b, BRANCH_OR_JUMP_ADDR = %h, PC_MUX_CONTROL = %b, REG_FLUSH = %b", v0x7ffff134df70_0, v0x7ffff134e1f0_0, v0x7ffff134deb0_0, v0x7ffff134e150_0, v0x7ffff134e600_0, v0x7ffff134e460_0, v0x7ffff134e530_0, v0x7ffff134e010_0, v0x7ffff134e2c0_0, v0x7ffff134e390_0 {0 0 0};
+    %vpi_call 2 70 "$display", "Test  3 (BEQ -F): BRANCH_ADDR = %h, JUMP_I = %H, BRANCH = %b, JUMP = %b, EQ_FLAG = %b, LT_FLAG = %b, LTU_FLAG = %b, BRANCH_OR_JUMP_ADDR = %h, PC_MUX_CONTROL = %b, REG_FLUSH = %b", v0x7fffcc340de0_0, v0x7fffcc341130_0, v0x7fffcc340d20_0, v0x7fffcc341060_0, v0x7fffcc340f20_0, v0x7fffcc3412d0_0, v0x7fffcc341200_0, v0x7fffcc340e80_0, v0x7fffcc3413a0_0, v0x7fffcc341470_0 {0 0 0};
     %delay 100, 0;
     %pushi/vec4 4096, 0, 32;
-    %store/vec4 v0x7ffff134df70_0, 0, 32;
+    %store/vec4 v0x7fffcc340de0_0, 0, 32;
     %delay 100, 0;
     %pushi/vec4 8192, 0, 32;
-    %store/vec4 v0x7ffff134e1f0_0, 0, 32;
+    %store/vec4 v0x7fffcc341130_0, 0, 32;
     %delay 100, 0;
     %pushi/vec4 1, 0, 3;
-    %store/vec4 v0x7ffff134e0b0_0, 0, 3;
+    %store/vec4 v0x7fffcc340fc0_0, 0, 3;
     %delay 100, 0;
     %pushi/vec4 1, 0, 1;
-    %store/vec4 v0x7ffff134deb0_0, 0, 1;
+    %store/vec4 v0x7fffcc340d20_0, 0, 1;
     %delay 100, 0;
     %pushi/vec4 0, 0, 1;
-    %store/vec4 v0x7ffff134e150_0, 0, 1;
+    %store/vec4 v0x7fffcc341060_0, 0, 1;
     %delay 100, 0;
     %pushi/vec4 0, 0, 1;
-    %store/vec4 v0x7ffff134e600_0, 0, 1;
+    %store/vec4 v0x7fffcc340f20_0, 0, 1;
     %delay 100, 0;
     %pushi/vec4 1, 1, 1;
-    %store/vec4 v0x7ffff134e460_0, 0, 1;
+    %store/vec4 v0x7fffcc3412d0_0, 0, 1;
     %delay 100, 0;
     %pushi/vec4 1, 1, 1;
-    %store/vec4 v0x7ffff134e530_0, 0, 1;
+    %store/vec4 v0x7fffcc341200_0, 0, 1;
     %delay 100, 0;
-    %vpi_call 2 81 "$display", "Test  4 (BNE -T): BRANCH_ADDR = %h, JUMP_I = %H, BRANCH = %b, JUMP = %b, ZERO = %b, SIGN = %b, UNSIGNED = %b, BRANCH_OR_JUMP_ADDR = %h, PC_MUX_CONTROL = %b, REG_FLUSH = %b", v0x7ffff134df70_0, v0x7ffff134e1f0_0, v0x7ffff134deb0_0, v0x7ffff134e150_0, v0x7ffff134e600_0, v0x7ffff134e460_0, v0x7ffff134e530_0, v0x7ffff134e010_0, v0x7ffff134e2c0_0, v0x7ffff134e390_0 {0 0 0};
+    %vpi_call 2 81 "$display", "Test  4 (BNE -T): BRANCH_ADDR = %h, JUMP_I = %H, BRANCH = %b, JUMP = %b, EQ_FLAG = %b, LT_FLAG = %b, LTU_FLAG = %b, BRANCH_OR_JUMP_ADDR = %h, PC_MUX_CONTROL = %b, REG_FLUSH = %b", v0x7fffcc340de0_0, v0x7fffcc341130_0, v0x7fffcc340d20_0, v0x7fffcc341060_0, v0x7fffcc340f20_0, v0x7fffcc3412d0_0, v0x7fffcc341200_0, v0x7fffcc340e80_0, v0x7fffcc3413a0_0, v0x7fffcc341470_0 {0 0 0};
     %delay 100, 0;
     %pushi/vec4 4096, 0, 32;
-    %store/vec4 v0x7ffff134df70_0, 0, 32;
+    %store/vec4 v0x7fffcc340de0_0, 0, 32;
     %delay 100, 0;
     %pushi/vec4 8192, 0, 32;
-    %store/vec4 v0x7ffff134e1f0_0, 0, 32;
+    %store/vec4 v0x7fffcc341130_0, 0, 32;
     %delay 100, 0;
     %pushi/vec4 1, 0, 3;
-    %store/vec4 v0x7ffff134e0b0_0, 0, 3;
+    %store/vec4 v0x7fffcc340fc0_0, 0, 3;
     %delay 100, 0;
     %pushi/vec4 1, 0, 1;
-    %store/vec4 v0x7ffff134deb0_0, 0, 1;
+    %store/vec4 v0x7fffcc340d20_0, 0, 1;
     %delay 100, 0;
     %pushi/vec4 0, 0, 1;
-    %store/vec4 v0x7ffff134e150_0, 0, 1;
+    %store/vec4 v0x7fffcc341060_0, 0, 1;
     %delay 100, 0;
     %pushi/vec4 1, 0, 1;
-    %store/vec4 v0x7ffff134e600_0, 0, 1;
+    %store/vec4 v0x7fffcc340f20_0, 0, 1;
     %delay 100, 0;
     %pushi/vec4 1, 1, 1;
-    %store/vec4 v0x7ffff134e460_0, 0, 1;
+    %store/vec4 v0x7fffcc3412d0_0, 0, 1;
     %delay 100, 0;
     %pushi/vec4 1, 1, 1;
-    %store/vec4 v0x7ffff134e530_0, 0, 1;
+    %store/vec4 v0x7fffcc341200_0, 0, 1;
     %delay 100, 0;
-    %vpi_call 2 92 "$display", "Test  5 (BNE -F): BRANCH_ADDR = %h, JUMP_I = %H, BRANCH = %b, JUMP = %b, ZERO = %b, SIGN = %b, UNSIGNED = %b, BRANCH_OR_JUMP_ADDR = %h, PC_MUX_CONTROL = %b, REG_FLUSH = %b", v0x7ffff134df70_0, v0x7ffff134e1f0_0, v0x7ffff134deb0_0, v0x7ffff134e150_0, v0x7ffff134e600_0, v0x7ffff134e460_0, v0x7ffff134e530_0, v0x7ffff134e010_0, v0x7ffff134e2c0_0, v0x7ffff134e390_0 {0 0 0};
+    %vpi_call 2 92 "$display", "Test  5 (BNE -F): BRANCH_ADDR = %h, JUMP_I = %H, BRANCH = %b, JUMP = %b, EQ_FLAG = %b, LT_FLAG = %b, LTU_FLAG = %b, BRANCH_OR_JUMP_ADDR = %h, PC_MUX_CONTROL = %b, REG_FLUSH = %b", v0x7fffcc340de0_0, v0x7fffcc341130_0, v0x7fffcc340d20_0, v0x7fffcc341060_0, v0x7fffcc340f20_0, v0x7fffcc3412d0_0, v0x7fffcc341200_0, v0x7fffcc340e80_0, v0x7fffcc3413a0_0, v0x7fffcc341470_0 {0 0 0};
     %delay 100, 0;
     %pushi/vec4 4096, 0, 32;
-    %store/vec4 v0x7ffff134df70_0, 0, 32;
+    %store/vec4 v0x7fffcc340de0_0, 0, 32;
     %delay 100, 0;
     %pushi/vec4 8192, 0, 32;
-    %store/vec4 v0x7ffff134e1f0_0, 0, 32;
+    %store/vec4 v0x7fffcc341130_0, 0, 32;
     %delay 100, 0;
     %pushi/vec4 4, 0, 3;
-    %store/vec4 v0x7ffff134e0b0_0, 0, 3;
+    %store/vec4 v0x7fffcc340fc0_0, 0, 3;
     %delay 100, 0;
     %pushi/vec4 1, 0, 1;
-    %store/vec4 v0x7ffff134deb0_0, 0, 1;
+    %store/vec4 v0x7fffcc340d20_0, 0, 1;
     %delay 100, 0;
     %pushi/vec4 0, 0, 1;
-    %store/vec4 v0x7ffff134e150_0, 0, 1;
+    %store/vec4 v0x7fffcc341060_0, 0, 1;
     %delay 100, 0;
     %pushi/vec4 0, 0, 1;
-    %store/vec4 v0x7ffff134e600_0, 0, 1;
+    %store/vec4 v0x7fffcc340f20_0, 0, 1;
     %delay 100, 0;
     %pushi/vec4 1, 0, 1;
-    %store/vec4 v0x7ffff134e460_0, 0, 1;
+    %store/vec4 v0x7fffcc3412d0_0, 0, 1;
     %delay 100, 0;
     %pushi/vec4 1, 1, 1;
-    %store/vec4 v0x7ffff134e530_0, 0, 1;
+    %store/vec4 v0x7fffcc341200_0, 0, 1;
     %delay 100, 0;
-    %vpi_call 2 103 "$display", "Test  6 (BLT -T): BRANCH_ADDR = %h, JUMP_I = %H, BRANCH = %b, JUMP = %b, ZERO = %b, SIGN = %b, UNSIGNED = %b, BRANCH_OR_JUMP_ADDR = %h, PC_MUX_CONTROL = %b, REG_FLUSH = %b", v0x7ffff134df70_0, v0x7ffff134e1f0_0, v0x7ffff134deb0_0, v0x7ffff134e150_0, v0x7ffff134e600_0, v0x7ffff134e460_0, v0x7ffff134e530_0, v0x7ffff134e010_0, v0x7ffff134e2c0_0, v0x7ffff134e390_0 {0 0 0};
+    %vpi_call 2 103 "$display", "Test  6 (BLT -T): BRANCH_ADDR = %h, JUMP_I = %H, BRANCH = %b, JUMP = %b, EQ_FLAG = %b, LT_FLAG = %b, LTU_FLAG = %b, BRANCH_OR_JUMP_ADDR = %h, PC_MUX_CONTROL = %b, REG_FLUSH = %b", v0x7fffcc340de0_0, v0x7fffcc341130_0, v0x7fffcc340d20_0, v0x7fffcc341060_0, v0x7fffcc340f20_0, v0x7fffcc3412d0_0, v0x7fffcc341200_0, v0x7fffcc340e80_0, v0x7fffcc3413a0_0, v0x7fffcc341470_0 {0 0 0};
     %delay 100, 0;
     %pushi/vec4 4096, 0, 32;
-    %store/vec4 v0x7ffff134df70_0, 0, 32;
+    %store/vec4 v0x7fffcc340de0_0, 0, 32;
     %delay 100, 0;
     %pushi/vec4 8192, 0, 32;
-    %store/vec4 v0x7ffff134e1f0_0, 0, 32;
+    %store/vec4 v0x7fffcc341130_0, 0, 32;
     %delay 100, 0;
     %pushi/vec4 4, 0, 3;
-    %store/vec4 v0x7ffff134e0b0_0, 0, 3;
+    %store/vec4 v0x7fffcc340fc0_0, 0, 3;
     %delay 100, 0;
     %pushi/vec4 1, 0, 1;
-    %store/vec4 v0x7ffff134deb0_0, 0, 1;
+    %store/vec4 v0x7fffcc340d20_0, 0, 1;
     %delay 100, 0;
     %pushi/vec4 0, 0, 1;
-    %store/vec4 v0x7ffff134e150_0, 0, 1;
+    %store/vec4 v0x7fffcc341060_0, 0, 1;
     %delay 100, 0;
     %pushi/vec4 1, 0, 1;
-    %store/vec4 v0x7ffff134e600_0, 0, 1;
+    %store/vec4 v0x7fffcc340f20_0, 0, 1;
     %delay 100, 0;
     %pushi/vec4 1, 0, 1;
-    %store/vec4 v0x7ffff134e460_0, 0, 1;
+    %store/vec4 v0x7fffcc3412d0_0, 0, 1;
     %delay 100, 0;
     %pushi/vec4 1, 1, 1;
-    %store/vec4 v0x7ffff134e530_0, 0, 1;
+    %store/vec4 v0x7fffcc341200_0, 0, 1;
     %delay 100, 0;
-    %vpi_call 2 114 "$display", "Test  7 (BLT -F): BRANCH_ADDR = %h, JUMP_I = %H, BRANCH = %b, JUMP = %b, ZERO = %b, SIGN = %b, UNSIGNED = %b, BRANCH_OR_JUMP_ADDR = %h, PC_MUX_CONTROL = %b, REG_FLUSH = %b", v0x7ffff134df70_0, v0x7ffff134e1f0_0, v0x7ffff134deb0_0, v0x7ffff134e150_0, v0x7ffff134e600_0, v0x7ffff134e460_0, v0x7ffff134e530_0, v0x7ffff134e010_0, v0x7ffff134e2c0_0, v0x7ffff134e390_0 {0 0 0};
+    %vpi_call 2 114 "$display", "Test  7 (BLT -F): BRANCH_ADDR = %h, JUMP_I = %H, BRANCH = %b, JUMP = %b, EQ_FLAG = %b, LT_FLAG = %b, LTU_FLAG = %b, BRANCH_OR_JUMP_ADDR = %h, PC_MUX_CONTROL = %b, REG_FLUSH = %b", v0x7fffcc340de0_0, v0x7fffcc341130_0, v0x7fffcc340d20_0, v0x7fffcc341060_0, v0x7fffcc340f20_0, v0x7fffcc3412d0_0, v0x7fffcc341200_0, v0x7fffcc340e80_0, v0x7fffcc3413a0_0, v0x7fffcc341470_0 {0 0 0};
     %delay 100, 0;
     %pushi/vec4 4096, 0, 32;
-    %store/vec4 v0x7ffff134df70_0, 0, 32;
+    %store/vec4 v0x7fffcc340de0_0, 0, 32;
     %delay 100, 0;
     %pushi/vec4 8192, 0, 32;
-    %store/vec4 v0x7ffff134e1f0_0, 0, 32;
+    %store/vec4 v0x7fffcc341130_0, 0, 32;
     %delay 100, 0;
     %pushi/vec4 4, 0, 3;
-    %store/vec4 v0x7ffff134e0b0_0, 0, 3;
+    %store/vec4 v0x7fffcc340fc0_0, 0, 3;
     %delay 100, 0;
     %pushi/vec4 1, 0, 1;
-    %store/vec4 v0x7ffff134deb0_0, 0, 1;
+    %store/vec4 v0x7fffcc340d20_0, 0, 1;
     %delay 100, 0;
     %pushi/vec4 0, 0, 1;
-    %store/vec4 v0x7ffff134e150_0, 0, 1;
+    %store/vec4 v0x7fffcc341060_0, 0, 1;
     %delay 100, 0;
     %pushi/vec4 1, 0, 1;
-    %store/vec4 v0x7ffff134e600_0, 0, 1;
+    %store/vec4 v0x7fffcc340f20_0, 0, 1;
     %delay 100, 0;
     %pushi/vec4 0, 0, 1;
-    %store/vec4 v0x7ffff134e460_0, 0, 1;
+    %store/vec4 v0x7fffcc3412d0_0, 0, 1;
     %delay 100, 0;
     %pushi/vec4 1, 1, 1;
-    %store/vec4 v0x7ffff134e530_0, 0, 1;
+    %store/vec4 v0x7fffcc341200_0, 0, 1;
     %delay 100, 0;
-    %vpi_call 2 125 "$display", "Test  8 (BLT -F): BRANCH_ADDR = %h, JUMP_I = %H, BRANCH = %b, JUMP = %b, ZERO = %b, SIGN = %b, UNSIGNED = %b, BRANCH_OR_JUMP_ADDR = %h, PC_MUX_CONTROL = %b, REG_FLUSH = %b", v0x7ffff134df70_0, v0x7ffff134e1f0_0, v0x7ffff134deb0_0, v0x7ffff134e150_0, v0x7ffff134e600_0, v0x7ffff134e460_0, v0x7ffff134e530_0, v0x7ffff134e010_0, v0x7ffff134e2c0_0, v0x7ffff134e390_0 {0 0 0};
+    %vpi_call 2 125 "$display", "Test  8 (BLT -F): BRANCH_ADDR = %h, JUMP_I = %H, BRANCH = %b, JUMP = %b, EQ_FLAG = %b, LT_FLAG = %b, LTU_FLAG = %b, BRANCH_OR_JUMP_ADDR = %h, PC_MUX_CONTROL = %b, REG_FLUSH = %b", v0x7fffcc340de0_0, v0x7fffcc341130_0, v0x7fffcc340d20_0, v0x7fffcc341060_0, v0x7fffcc340f20_0, v0x7fffcc3412d0_0, v0x7fffcc341200_0, v0x7fffcc340e80_0, v0x7fffcc3413a0_0, v0x7fffcc341470_0 {0 0 0};
     %delay 100, 0;
     %pushi/vec4 4096, 0, 32;
-    %store/vec4 v0x7ffff134df70_0, 0, 32;
+    %store/vec4 v0x7fffcc340de0_0, 0, 32;
     %delay 100, 0;
     %pushi/vec4 8192, 0, 32;
-    %store/vec4 v0x7ffff134e1f0_0, 0, 32;
+    %store/vec4 v0x7fffcc341130_0, 0, 32;
     %delay 100, 0;
     %pushi/vec4 5, 0, 3;
-    %store/vec4 v0x7ffff134e0b0_0, 0, 3;
+    %store/vec4 v0x7fffcc340fc0_0, 0, 3;
     %delay 100, 0;
     %pushi/vec4 1, 0, 1;
-    %store/vec4 v0x7ffff134deb0_0, 0, 1;
+    %store/vec4 v0x7fffcc340d20_0, 0, 1;
     %delay 100, 0;
     %pushi/vec4 0, 0, 1;
-    %store/vec4 v0x7ffff134e150_0, 0, 1;
+    %store/vec4 v0x7fffcc341060_0, 0, 1;
     %delay 100, 0;
     %pushi/vec4 1, 1, 1;
-    %store/vec4 v0x7ffff134e600_0, 0, 1;
+    %store/vec4 v0x7fffcc340f20_0, 0, 1;
     %delay 100, 0;
     %pushi/vec4 0, 0, 1;
-    %store/vec4 v0x7ffff134e460_0, 0, 1;
+    %store/vec4 v0x7fffcc3412d0_0, 0, 1;
     %delay 100, 0;
     %pushi/vec4 1, 1, 1;
-    %store/vec4 v0x7ffff134e530_0, 0, 1;
+    %store/vec4 v0x7fffcc341200_0, 0, 1;
     %delay 100, 0;
-    %vpi_call 2 136 "$display", "Test  9 (BGE -T): BRANCH_ADDR = %h, JUMP_I = %H, BRANCH = %b, JUMP = %b, ZERO = %b, SIGN = %b, UNSIGNED = %b, BRANCH_OR_JUMP_ADDR = %h, PC_MUX_CONTROL = %b, REG_FLUSH = %b", v0x7ffff134df70_0, v0x7ffff134e1f0_0, v0x7ffff134deb0_0, v0x7ffff134e150_0, v0x7ffff134e600_0, v0x7ffff134e460_0, v0x7ffff134e530_0, v0x7ffff134e010_0, v0x7ffff134e2c0_0, v0x7ffff134e390_0 {0 0 0};
+    %vpi_call 2 136 "$display", "Test  9 (BGE -T): BRANCH_ADDR = %h, JUMP_I = %H, BRANCH = %b, JUMP = %b, EQ_FLAG = %b, LT_FLAG = %b, LTU_FLAG = %b, BRANCH_OR_JUMP_ADDR = %h, PC_MUX_CONTROL = %b, REG_FLUSH = %b", v0x7fffcc340de0_0, v0x7fffcc341130_0, v0x7fffcc340d20_0, v0x7fffcc341060_0, v0x7fffcc340f20_0, v0x7fffcc3412d0_0, v0x7fffcc341200_0, v0x7fffcc340e80_0, v0x7fffcc3413a0_0, v0x7fffcc341470_0 {0 0 0};
     %delay 100, 0;
     %pushi/vec4 4096, 0, 32;
-    %store/vec4 v0x7ffff134df70_0, 0, 32;
+    %store/vec4 v0x7fffcc340de0_0, 0, 32;
     %delay 100, 0;
     %pushi/vec4 8192, 0, 32;
-    %store/vec4 v0x7ffff134e1f0_0, 0, 32;
+    %store/vec4 v0x7fffcc341130_0, 0, 32;
     %delay 100, 0;
     %pushi/vec4 5, 0, 3;
-    %store/vec4 v0x7ffff134e0b0_0, 0, 3;
+    %store/vec4 v0x7fffcc340fc0_0, 0, 3;
     %delay 100, 0;
     %pushi/vec4 1, 0, 1;
-    %store/vec4 v0x7ffff134deb0_0, 0, 1;
+    %store/vec4 v0x7fffcc340d20_0, 0, 1;
     %delay 100, 0;
     %pushi/vec4 0, 0, 1;
-    %store/vec4 v0x7ffff134e150_0, 0, 1;
+    %store/vec4 v0x7fffcc341060_0, 0, 1;
     %delay 100, 0;
     %pushi/vec4 1, 1, 1;
-    %store/vec4 v0x7ffff134e600_0, 0, 1;
+    %store/vec4 v0x7fffcc340f20_0, 0, 1;
     %delay 100, 0;
     %pushi/vec4 1, 0, 1;
-    %store/vec4 v0x7ffff134e460_0, 0, 1;
+    %store/vec4 v0x7fffcc3412d0_0, 0, 1;
     %delay 100, 0;
     %pushi/vec4 1, 1, 1;
-    %store/vec4 v0x7ffff134e530_0, 0, 1;
+    %store/vec4 v0x7fffcc341200_0, 0, 1;
     %delay 100, 0;
-    %vpi_call 2 147 "$display", "Test 10 (BGE -F): BRANCH_ADDR = %h, JUMP_I = %H, BRANCH = %b, JUMP = %b, ZERO = %b, SIGN = %b, UNSIGNED = %b, BRANCH_OR_JUMP_ADDR = %h, PC_MUX_CONTROL = %b, REG_FLUSH = %b", v0x7ffff134df70_0, v0x7ffff134e1f0_0, v0x7ffff134deb0_0, v0x7ffff134e150_0, v0x7ffff134e600_0, v0x7ffff134e460_0, v0x7ffff134e530_0, v0x7ffff134e010_0, v0x7ffff134e2c0_0, v0x7ffff134e390_0 {0 0 0};
+    %vpi_call 2 147 "$display", "Test 10 (BGE -F): BRANCH_ADDR = %h, JUMP_I = %H, BRANCH = %b, JUMP = %b, EQ_FLAG = %b, LT_FLAG = %b, LTU_FLAG = %b, BRANCH_OR_JUMP_ADDR = %h, PC_MUX_CONTROL = %b, REG_FLUSH = %b", v0x7fffcc340de0_0, v0x7fffcc341130_0, v0x7fffcc340d20_0, v0x7fffcc341060_0, v0x7fffcc340f20_0, v0x7fffcc3412d0_0, v0x7fffcc341200_0, v0x7fffcc340e80_0, v0x7fffcc3413a0_0, v0x7fffcc341470_0 {0 0 0};
     %delay 100, 0;
     %pushi/vec4 4096, 0, 32;
-    %store/vec4 v0x7ffff134df70_0, 0, 32;
+    %store/vec4 v0x7fffcc340de0_0, 0, 32;
     %delay 100, 0;
     %pushi/vec4 8192, 0, 32;
-    %store/vec4 v0x7ffff134e1f0_0, 0, 32;
+    %store/vec4 v0x7fffcc341130_0, 0, 32;
     %delay 100, 0;
     %pushi/vec4 6, 0, 3;
-    %store/vec4 v0x7ffff134e0b0_0, 0, 3;
+    %store/vec4 v0x7fffcc340fc0_0, 0, 3;
     %delay 100, 0;
     %pushi/vec4 1, 0, 1;
-    %store/vec4 v0x7ffff134deb0_0, 0, 1;
+    %store/vec4 v0x7fffcc340d20_0, 0, 1;
     %delay 100, 0;
     %pushi/vec4 0, 0, 1;
-    %store/vec4 v0x7ffff134e150_0, 0, 1;
+    %store/vec4 v0x7fffcc341060_0, 0, 1;
     %delay 100, 0;
     %pushi/vec4 0, 0, 1;
-    %store/vec4 v0x7ffff134e600_0, 0, 1;
+    %store/vec4 v0x7fffcc340f20_0, 0, 1;
     %delay 100, 0;
     %pushi/vec4 1, 1, 1;
-    %store/vec4 v0x7ffff134e460_0, 0, 1;
+    %store/vec4 v0x7fffcc3412d0_0, 0, 1;
     %delay 100, 0;
     %pushi/vec4 1, 0, 1;
-    %store/vec4 v0x7ffff134e530_0, 0, 1;
+    %store/vec4 v0x7fffcc341200_0, 0, 1;
     %delay 100, 0;
-    %vpi_call 2 158 "$display", "Test 11 (BLTU-T): BRANCH_ADDR = %h, JUMP_I = %H, BRANCH = %b, JUMP = %b, ZERO = %b, SIGN = %b, UNSIGNED = %b, BRANCH_OR_JUMP_ADDR = %h, PC_MUX_CONTROL = %b, REG_FLUSH = %b", v0x7ffff134df70_0, v0x7ffff134e1f0_0, v0x7ffff134deb0_0, v0x7ffff134e150_0, v0x7ffff134e600_0, v0x7ffff134e460_0, v0x7ffff134e530_0, v0x7ffff134e010_0, v0x7ffff134e2c0_0, v0x7ffff134e390_0 {0 0 0};
+    %vpi_call 2 158 "$display", "Test 11 (BLTU-T): BRANCH_ADDR = %h, JUMP_I = %H, BRANCH = %b, JUMP = %b, EQ_FLAG = %b, LT_FLAG = %b, LTU_FLAG = %b, BRANCH_OR_JUMP_ADDR = %h, PC_MUX_CONTROL = %b, REG_FLUSH = %b", v0x7fffcc340de0_0, v0x7fffcc341130_0, v0x7fffcc340d20_0, v0x7fffcc341060_0, v0x7fffcc340f20_0, v0x7fffcc3412d0_0, v0x7fffcc341200_0, v0x7fffcc340e80_0, v0x7fffcc3413a0_0, v0x7fffcc341470_0 {0 0 0};
     %delay 100, 0;
     %pushi/vec4 4096, 0, 32;
-    %store/vec4 v0x7ffff134df70_0, 0, 32;
+    %store/vec4 v0x7fffcc340de0_0, 0, 32;
     %delay 100, 0;
     %pushi/vec4 8192, 0, 32;
-    %store/vec4 v0x7ffff134e1f0_0, 0, 32;
+    %store/vec4 v0x7fffcc341130_0, 0, 32;
     %delay 100, 0;
     %pushi/vec4 6, 0, 3;
-    %store/vec4 v0x7ffff134e0b0_0, 0, 3;
+    %store/vec4 v0x7fffcc340fc0_0, 0, 3;
     %delay 100, 0;
     %pushi/vec4 1, 0, 1;
-    %store/vec4 v0x7ffff134deb0_0, 0, 1;
+    %store/vec4 v0x7fffcc340d20_0, 0, 1;
     %delay 100, 0;
     %pushi/vec4 0, 0, 1;
-    %store/vec4 v0x7ffff134e150_0, 0, 1;
+    %store/vec4 v0x7fffcc341060_0, 0, 1;
     %delay 100, 0;
     %pushi/vec4 0, 0, 1;
-    %store/vec4 v0x7ffff134e600_0, 0, 1;
+    %store/vec4 v0x7fffcc340f20_0, 0, 1;
     %delay 100, 0;
     %pushi/vec4 1, 1, 1;
-    %store/vec4 v0x7ffff134e460_0, 0, 1;
+    %store/vec4 v0x7fffcc3412d0_0, 0, 1;
     %delay 100, 0;
     %pushi/vec4 0, 0, 1;
-    %store/vec4 v0x7ffff134e530_0, 0, 1;
+    %store/vec4 v0x7fffcc341200_0, 0, 1;
     %delay 100, 0;
-    %vpi_call 2 169 "$display", "Test 12 (BLTU-F): BRANCH_ADDR = %h, JUMP_I = %H, BRANCH = %b, JUMP = %b, ZERO = %b, SIGN = %b, UNSIGNED = %b, BRANCH_OR_JUMP_ADDR = %h, PC_MUX_CONTROL = %b, REG_FLUSH = %b", v0x7ffff134df70_0, v0x7ffff134e1f0_0, v0x7ffff134deb0_0, v0x7ffff134e150_0, v0x7ffff134e600_0, v0x7ffff134e460_0, v0x7ffff134e530_0, v0x7ffff134e010_0, v0x7ffff134e2c0_0, v0x7ffff134e390_0 {0 0 0};
+    %vpi_call 2 169 "$display", "Test 12 (BLTU-F): BRANCH_ADDR = %h, JUMP_I = %H, BRANCH = %b, JUMP = %b, EQ_FLAG = %b, LT_FLAG = %b, LTU_FLAG = %b, BRANCH_OR_JUMP_ADDR = %h, PC_MUX_CONTROL = %b, REG_FLUSH = %b", v0x7fffcc340de0_0, v0x7fffcc341130_0, v0x7fffcc340d20_0, v0x7fffcc341060_0, v0x7fffcc340f20_0, v0x7fffcc3412d0_0, v0x7fffcc341200_0, v0x7fffcc340e80_0, v0x7fffcc3413a0_0, v0x7fffcc341470_0 {0 0 0};
     %delay 100, 0;
     %pushi/vec4 4096, 0, 32;
-    %store/vec4 v0x7ffff134df70_0, 0, 32;
+    %store/vec4 v0x7fffcc340de0_0, 0, 32;
     %delay 100, 0;
     %pushi/vec4 8192, 0, 32;
-    %store/vec4 v0x7ffff134e1f0_0, 0, 32;
+    %store/vec4 v0x7fffcc341130_0, 0, 32;
     %delay 100, 0;
     %pushi/vec4 6, 0, 3;
-    %store/vec4 v0x7ffff134e0b0_0, 0, 3;
+    %store/vec4 v0x7fffcc340fc0_0, 0, 3;
     %delay 100, 0;
     %pushi/vec4 1, 0, 1;
-    %store/vec4 v0x7ffff134deb0_0, 0, 1;
+    %store/vec4 v0x7fffcc340d20_0, 0, 1;
     %delay 100, 0;
     %pushi/vec4 0, 0, 1;
-    %store/vec4 v0x7ffff134e150_0, 0, 1;
+    %store/vec4 v0x7fffcc341060_0, 0, 1;
     %delay 100, 0;
     %pushi/vec4 1, 0, 1;
-    %store/vec4 v0x7ffff134e600_0, 0, 1;
+    %store/vec4 v0x7fffcc340f20_0, 0, 1;
     %delay 100, 0;
     %pushi/vec4 1, 1, 1;
-    %store/vec4 v0x7ffff134e460_0, 0, 1;
+    %store/vec4 v0x7fffcc3412d0_0, 0, 1;
     %delay 100, 0;
     %pushi/vec4 1, 0, 1;
-    %store/vec4 v0x7ffff134e530_0, 0, 1;
+    %store/vec4 v0x7fffcc341200_0, 0, 1;
     %delay 100, 0;
-    %vpi_call 2 180 "$display", "Test 13 (BLTU-F): BRANCH_ADDR = %h, JUMP_I = %H, BRANCH = %b, JUMP = %b, ZERO = %b, SIGN = %b, UNSIGNED = %b, BRANCH_OR_JUMP_ADDR = %h, PC_MUX_CONTROL = %b, REG_FLUSH = %b", v0x7ffff134df70_0, v0x7ffff134e1f0_0, v0x7ffff134deb0_0, v0x7ffff134e150_0, v0x7ffff134e600_0, v0x7ffff134e460_0, v0x7ffff134e530_0, v0x7ffff134e010_0, v0x7ffff134e2c0_0, v0x7ffff134e390_0 {0 0 0};
+    %vpi_call 2 180 "$display", "Test 13 (BLTU-F): BRANCH_ADDR = %h, JUMP_I = %H, BRANCH = %b, JUMP = %b, EQ_FLAG = %b, LT_FLAG = %b, LTU_FLAG = %b, BRANCH_OR_JUMP_ADDR = %h, PC_MUX_CONTROL = %b, REG_FLUSH = %b", v0x7fffcc340de0_0, v0x7fffcc341130_0, v0x7fffcc340d20_0, v0x7fffcc341060_0, v0x7fffcc340f20_0, v0x7fffcc3412d0_0, v0x7fffcc341200_0, v0x7fffcc340e80_0, v0x7fffcc3413a0_0, v0x7fffcc341470_0 {0 0 0};
     %delay 100, 0;
     %pushi/vec4 4096, 0, 32;
-    %store/vec4 v0x7ffff134df70_0, 0, 32;
+    %store/vec4 v0x7fffcc340de0_0, 0, 32;
     %delay 100, 0;
     %pushi/vec4 8192, 0, 32;
-    %store/vec4 v0x7ffff134e1f0_0, 0, 32;
+    %store/vec4 v0x7fffcc341130_0, 0, 32;
     %delay 100, 0;
     %pushi/vec4 7, 0, 3;
-    %store/vec4 v0x7ffff134e0b0_0, 0, 3;
+    %store/vec4 v0x7fffcc340fc0_0, 0, 3;
     %delay 100, 0;
     %pushi/vec4 1, 0, 1;
-    %store/vec4 v0x7ffff134deb0_0, 0, 1;
+    %store/vec4 v0x7fffcc340d20_0, 0, 1;
     %delay 100, 0;
     %pushi/vec4 0, 0, 1;
-    %store/vec4 v0x7ffff134e150_0, 0, 1;
+    %store/vec4 v0x7fffcc341060_0, 0, 1;
     %delay 100, 0;
     %pushi/vec4 0, 0, 1;
-    %store/vec4 v0x7ffff134e600_0, 0, 1;
+    %store/vec4 v0x7fffcc340f20_0, 0, 1;
     %delay 100, 0;
     %pushi/vec4 1, 1, 1;
-    %store/vec4 v0x7ffff134e460_0, 0, 1;
+    %store/vec4 v0x7fffcc3412d0_0, 0, 1;
     %delay 100, 0;
     %pushi/vec4 0, 0, 1;
-    %store/vec4 v0x7ffff134e530_0, 0, 1;
+    %store/vec4 v0x7fffcc341200_0, 0, 1;
     %delay 100, 0;
-    %vpi_call 2 191 "$display", "Test 14 (BGEU-T): BRANCH_ADDR = %h, JUMP_I = %H, BRANCH = %b, JUMP = %b, ZERO = %b, SIGN = %b, UNSIGNED = %b, BRANCH_OR_JUMP_ADDR = %h, PC_MUX_CONTROL = %b, REG_FLUSH = %b", v0x7ffff134df70_0, v0x7ffff134e1f0_0, v0x7ffff134deb0_0, v0x7ffff134e150_0, v0x7ffff134e600_0, v0x7ffff134e460_0, v0x7ffff134e530_0, v0x7ffff134e010_0, v0x7ffff134e2c0_0, v0x7ffff134e390_0 {0 0 0};
+    %vpi_call 2 191 "$display", "Test 14 (BGEU-T): BRANCH_ADDR = %h, JUMP_I = %H, BRANCH = %b, JUMP = %b, EQ_FLAG = %b, LT_FLAG = %b, LTU_FLAG = %b, BRANCH_OR_JUMP_ADDR = %h, PC_MUX_CONTROL = %b, REG_FLUSH = %b", v0x7fffcc340de0_0, v0x7fffcc341130_0, v0x7fffcc340d20_0, v0x7fffcc341060_0, v0x7fffcc340f20_0, v0x7fffcc3412d0_0, v0x7fffcc341200_0, v0x7fffcc340e80_0, v0x7fffcc3413a0_0, v0x7fffcc341470_0 {0 0 0};
     %delay 100, 0;
     %pushi/vec4 4096, 0, 32;
-    %store/vec4 v0x7ffff134df70_0, 0, 32;
+    %store/vec4 v0x7fffcc340de0_0, 0, 32;
     %delay 100, 0;
     %pushi/vec4 8192, 0, 32;
-    %store/vec4 v0x7ffff134e1f0_0, 0, 32;
+    %store/vec4 v0x7fffcc341130_0, 0, 32;
     %delay 100, 0;
     %pushi/vec4 7, 0, 3;
-    %store/vec4 v0x7ffff134e0b0_0, 0, 3;
+    %store/vec4 v0x7fffcc340fc0_0, 0, 3;
     %delay 100, 0;
     %pushi/vec4 1, 0, 1;
-    %store/vec4 v0x7ffff134deb0_0, 0, 1;
+    %store/vec4 v0x7fffcc340d20_0, 0, 1;
     %delay 100, 0;
     %pushi/vec4 0, 0, 1;
-    %store/vec4 v0x7ffff134e150_0, 0, 1;
+    %store/vec4 v0x7fffcc341060_0, 0, 1;
     %delay 100, 0;
     %pushi/vec4 0, 0, 1;
-    %store/vec4 v0x7ffff134e600_0, 0, 1;
+    %store/vec4 v0x7fffcc340f20_0, 0, 1;
     %delay 100, 0;
     %pushi/vec4 1, 1, 1;
-    %store/vec4 v0x7ffff134e460_0, 0, 1;
+    %store/vec4 v0x7fffcc3412d0_0, 0, 1;
     %delay 100, 0;
     %pushi/vec4 1, 0, 1;
-    %store/vec4 v0x7ffff134e530_0, 0, 1;
+    %store/vec4 v0x7fffcc341200_0, 0, 1;
     %delay 100, 0;
-    %vpi_call 2 202 "$display", "Test 15 (BGEU-F): BRANCH_ADDR = %h, JUMP_I = %H, BRANCH = %b, JUMP = %b, ZERO = %b, SIGN = %b, UNSIGNED = %b, BRANCH_OR_JUMP_ADDR = %h, PC_MUX_CONTROL = %b, REG_FLUSH = %b", v0x7ffff134df70_0, v0x7ffff134e1f0_0, v0x7ffff134deb0_0, v0x7ffff134e150_0, v0x7ffff134e600_0, v0x7ffff134e460_0, v0x7ffff134e530_0, v0x7ffff134e010_0, v0x7ffff134e2c0_0, v0x7ffff134e390_0 {0 0 0};
+    %vpi_call 2 202 "$display", "Test 15 (BGEU-F): BRANCH_ADDR = %h, JUMP_I = %H, BRANCH = %b, JUMP = %b, EQ_FLAG = %b, LT_FLAG = %b, LTU_FLAG = %b, BRANCH_OR_JUMP_ADDR = %h, PC_MUX_CONTROL = %b, REG_FLUSH = %b", v0x7fffcc340de0_0, v0x7fffcc341130_0, v0x7fffcc340d20_0, v0x7fffcc341060_0, v0x7fffcc340f20_0, v0x7fffcc3412d0_0, v0x7fffcc341200_0, v0x7fffcc340e80_0, v0x7fffcc3413a0_0, v0x7fffcc341470_0 {0 0 0};
     %delay 100, 0;
     %pushi/vec4 4096, 0, 32;
-    %store/vec4 v0x7ffff134df70_0, 0, 32;
+    %store/vec4 v0x7fffcc340de0_0, 0, 32;
     %delay 100, 0;
     %pushi/vec4 8192, 0, 32;
-    %store/vec4 v0x7ffff134e1f0_0, 0, 32;
+    %store/vec4 v0x7fffcc341130_0, 0, 32;
     %delay 100, 0;
     %pushi/vec4 7, 7, 3;
-    %store/vec4 v0x7ffff134e0b0_0, 0, 3;
+    %store/vec4 v0x7fffcc340fc0_0, 0, 3;
     %delay 100, 0;
     %pushi/vec4 0, 0, 1;
-    %store/vec4 v0x7ffff134deb0_0, 0, 1;
+    %store/vec4 v0x7fffcc340d20_0, 0, 1;
     %delay 100, 0;
     %pushi/vec4 0, 0, 1;
-    %store/vec4 v0x7ffff134e150_0, 0, 1;
+    %store/vec4 v0x7fffcc341060_0, 0, 1;
     %delay 100, 0;
     %pushi/vec4 1, 1, 1;
-    %store/vec4 v0x7ffff134e600_0, 0, 1;
+    %store/vec4 v0x7fffcc340f20_0, 0, 1;
     %delay 100, 0;
     %pushi/vec4 1, 1, 1;
-    %store/vec4 v0x7ffff134e460_0, 0, 1;
+    %store/vec4 v0x7fffcc3412d0_0, 0, 1;
     %delay 100, 0;
     %pushi/vec4 1, 1, 1;
-    %store/vec4 v0x7ffff134e530_0, 0, 1;
+    %store/vec4 v0x7fffcc341200_0, 0, 1;
     %delay 100, 0;
-    %vpi_call 2 213 "$display", "Test 16 (OTHERS): BRANCH_ADDR = %h, JUMP_I = %H, BRANCH = %b, JUMP = %b, ZERO = %b, SIGN = %b, UNSIGNED = %b, BRANCH_OR_JUMP_ADDR = %h, PC_MUX_CONTROL = %b, REG_FLUSH = %b", v0x7ffff134df70_0, v0x7ffff134e1f0_0, v0x7ffff134deb0_0, v0x7ffff134e150_0, v0x7ffff134e600_0, v0x7ffff134e460_0, v0x7ffff134e530_0, v0x7ffff134e010_0, v0x7ffff134e2c0_0, v0x7ffff134e390_0 {0 0 0};
+    %vpi_call 2 213 "$display", "Test 16 (OTHERS): BRANCH_ADDR = %h, JUMP_I = %H, BRANCH = %b, JUMP = %b, EQ_FLAG = %b, LT_FLAG = %b, LTU_FLAG = %b, BRANCH_OR_JUMP_ADDR = %h, PC_MUX_CONTROL = %b, REG_FLUSH = %b", v0x7fffcc340de0_0, v0x7fffcc341130_0, v0x7fffcc340d20_0, v0x7fffcc341060_0, v0x7fffcc340f20_0, v0x7fffcc3412d0_0, v0x7fffcc341200_0, v0x7fffcc340e80_0, v0x7fffcc3413a0_0, v0x7fffcc341470_0 {0 0 0};
     %end;
     .thread T_2;
 # The file index is used to find the file name in the following table.
