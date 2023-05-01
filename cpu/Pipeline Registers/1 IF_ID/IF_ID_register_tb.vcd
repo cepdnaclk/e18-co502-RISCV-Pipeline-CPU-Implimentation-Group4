@@ -1,0 +1,104 @@
+$date
+	Mon May 01 11:51:20 2023
+$end
+$version
+	Icarus Verilog
+$end
+$timescale
+	1s
+$end
+$scope module IF_ID_register_tb $end
+$var wire 32 ! PC_PLUS_4_OUT [31:0] $end
+$var wire 32 " PC_DIRECT_OUT [31:0] $end
+$var wire 32 # INSTRUCTION_OUT [31:0] $end
+$var reg 1 $ BUSYWAIT $end
+$var reg 1 % CLK $end
+$var reg 32 & INSTRUCTION_IN [31:0] $end
+$var reg 32 ' PC_DIRECT_IN [31:0] $end
+$var reg 32 ( PC_PLUS_4_IN [31:0] $end
+$var reg 1 ) RESET $end
+$scope module if_id_register $end
+$var wire 1 $ BUSYWAIT $end
+$var wire 1 % CLK $end
+$var wire 32 * INSTRUCTION_IN [31:0] $end
+$var wire 32 + PC_DIRECT_IN [31:0] $end
+$var wire 32 , PC_PLUS_4_IN [31:0] $end
+$var wire 1 ) RESET $end
+$var reg 32 - INSTRUCTION_OUT [31:0] $end
+$var reg 32 . PC_DIRECT_OUT [31:0] $end
+$var reg 32 / PC_PLUS_4_OUT [31:0] $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+$comment Show the parameter values. $end
+$dumpall
+$end
+#0
+$dumpvars
+bx /
+bx .
+bx -
+b111000 ,
+b110100 +
+b10100 *
+0)
+b111000 (
+b110100 '
+b10100 &
+0%
+0$
+bx #
+bx "
+bx !
+$end
+#1
+1)
+#4
+1%
+#6
+0)
+#8
+0%
+#12
+1%
+#13
+b110100 "
+b110100 .
+b111000 !
+b111000 /
+b10100 #
+b10100 -
+#16
+0%
+#17
+b1000000 (
+b1000000 ,
+b111100 '
+b111100 +
+b11110 &
+b11110 *
+1$
+#20
+1%
+#24
+0%
+#28
+1%
+#32
+0%
+#36
+1%
+#40
+0%
+#44
+1%
+#48
+0%
+#52
+1%
+#56
+0%
+#60
+1%
+#64
+0%

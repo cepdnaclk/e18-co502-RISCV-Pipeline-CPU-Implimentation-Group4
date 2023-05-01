@@ -1,0 +1,178 @@
+$date
+	Mon May 01 11:52:47 2023
+$end
+$version
+	Icarus Verilog
+$end
+$timescale
+	1s
+$end
+$scope module EX_MEM_register_tb $end
+$var wire 1 ! WRITE_ENABLE_OUT $end
+$var wire 5 " RD_OUT [4:0] $end
+$var wire 32 # OUT2_OUT [31:0] $end
+$var wire 1 $ MUXDATAMEM_SELECT_OUT $end
+$var wire 1 % MEM_WRITE_OUT $end
+$var wire 1 & MEM_READ_OUT $end
+$var wire 3 ' FUNCT3_OUT [2:0] $end
+$var wire 32 ( ALU_OUT_OUT [31:0] $end
+$var reg 32 ) ALU_OUT_IN [31:0] $end
+$var reg 1 * BUSYWAIT $end
+$var reg 1 + CLK $end
+$var reg 3 , FUNCT3_IN [2:0] $end
+$var reg 1 - MEM_READ_IN $end
+$var reg 1 . MEM_WRITE_IN $end
+$var reg 1 / MUXDATAMEM_SELECT_IN $end
+$var reg 32 0 OUT2_IN [31:0] $end
+$var reg 5 1 RD_IN [4:0] $end
+$var reg 1 2 RESET $end
+$var reg 1 3 WRITE_ENABLE_IN $end
+$scope module ex_mem_register $end
+$var wire 32 4 ALU_OUT_IN [31:0] $end
+$var wire 1 * BUSYWAIT $end
+$var wire 1 + CLK $end
+$var wire 3 5 FUNCT3_IN [2:0] $end
+$var wire 1 - MEM_READ_IN $end
+$var wire 1 . MEM_WRITE_IN $end
+$var wire 1 / MUXDATAMEM_SELECT_IN $end
+$var wire 32 6 OUT2_IN [31:0] $end
+$var wire 5 7 RD_IN [4:0] $end
+$var wire 1 2 RESET $end
+$var wire 1 3 WRITE_ENABLE_IN $end
+$var reg 32 8 ALU_OUT_OUT [31:0] $end
+$var reg 3 9 FUNCT3_OUT [2:0] $end
+$var reg 1 & MEM_READ_OUT $end
+$var reg 1 % MEM_WRITE_OUT $end
+$var reg 1 $ MUXDATAMEM_SELECT_OUT $end
+$var reg 32 : OUT2_OUT [31:0] $end
+$var reg 5 ; RD_OUT [4:0] $end
+$var reg 1 ! WRITE_ENABLE_OUT $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+$comment Show the parameter values. $end
+$dumpall
+$end
+#0
+$dumpvars
+bx ;
+bx :
+bx 9
+bx 8
+b10100 7
+b1101111010 6
+b110 5
+b10011111 4
+13
+02
+b10100 1
+b1101111010 0
+1/
+1.
+1-
+b110 ,
+0+
+0*
+b10011111 )
+bx (
+bx '
+x&
+x%
+x$
+bx #
+bx "
+x!
+$end
+#1
+12
+#4
+1+
+#5
+02
+#8
+0+
+#12
+1+
+#13
+b1101111010 #
+b1101111010 :
+b10011111 (
+b10011111 8
+b10100 "
+b10100 ;
+b110 '
+b110 9
+1%
+1&
+1$
+1!
+#16
+0+
+#17
+b111 ,
+b111 5
+b10 1
+b10 7
+b1010000 0
+b1010000 6
+b10011 )
+b10011 4
+0.
+0-
+0/
+03
+1*
+#20
+1+
+#24
+0+
+#28
+1+
+#32
+0+
+#36
+1+
+#40
+0+
+#44
+1+
+#48
+0+
+#52
+1+
+#56
+0+
+#60
+1+
+#64
+0+
+#68
+1+
+#72
+0+
+#76
+1+
+#80
+0+
+#84
+1+
+#88
+0+
+#92
+1+
+#96
+0+
+#100
+1+
+#104
+0+
+#108
+1+
+#112
+0+
+#116
+1+
+#120
+0+
+#124
+1+

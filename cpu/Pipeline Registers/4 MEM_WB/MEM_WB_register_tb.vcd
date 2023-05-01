@@ -1,0 +1,150 @@
+$date
+	Mon May 01 11:43:27 2023
+$end
+$version
+	Icarus Verilog
+$end
+$timescale
+	1s
+$end
+$scope module MEM_WB_register_tb $end
+$var wire 1 ! WRITE_ENABLE_OUT $end
+$var wire 5 " RD_OUT [4:0] $end
+$var wire 1 # MUXDATAMEM_SELECT_OUT $end
+$var wire 32 $ DATA_OUT_OUT [31:0] $end
+$var wire 32 % ALU_OUT_OUT [31:0] $end
+$var reg 32 & ALU_OUT_IN [31:0] $end
+$var reg 1 ' BUSYWAIT $end
+$var reg 1 ( CLK $end
+$var reg 32 ) DATA_OUT_IN [31:0] $end
+$var reg 1 * MUXDATAMEM_SELECT_IN $end
+$var reg 5 + RD_IN [4:0] $end
+$var reg 1 , RESET $end
+$var reg 1 - WRITE_ENABLE_IN $end
+$scope module mem_wb_register $end
+$var wire 32 . ALU_OUT_IN [31:0] $end
+$var wire 1 ' BUSYWAIT $end
+$var wire 1 ( CLK $end
+$var wire 32 / DATA_OUT_IN [31:0] $end
+$var wire 1 * MUXDATAMEM_SELECT_IN $end
+$var wire 5 0 RD_IN [4:0] $end
+$var wire 1 , RESET $end
+$var wire 1 - WRITE_ENABLE_IN $end
+$var reg 32 1 ALU_OUT_OUT [31:0] $end
+$var reg 32 2 DATA_OUT_OUT [31:0] $end
+$var reg 1 # MUXDATAMEM_SELECT_OUT $end
+$var reg 5 3 RD_OUT [4:0] $end
+$var reg 1 ! WRITE_ENABLE_OUT $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+$comment Show the parameter values. $end
+$dumpall
+$end
+#0
+$dumpvars
+bx 3
+bx 2
+bx 1
+b10100 0
+b111001000 /
+b10011111 .
+1-
+0,
+b10100 +
+1*
+b111001000 )
+0(
+0'
+b10011111 &
+bx %
+bx $
+x#
+bx "
+x!
+$end
+#1
+1,
+#4
+1(
+#5
+0,
+#8
+0(
+#12
+1(
+#13
+b111001000 $
+b111001000 2
+b10011111 %
+b10011111 1
+b10100 "
+b10100 3
+1#
+1!
+#16
+0(
+#17
+b11000 +
+b11000 0
+b1111 &
+b1111 .
+b110010110 )
+b110010110 /
+0*
+0-
+1'
+#20
+1(
+#24
+0(
+#28
+1(
+#32
+0(
+#36
+1(
+#40
+0(
+#44
+1(
+#48
+0(
+#52
+1(
+#56
+0(
+#60
+1(
+#64
+0(
+#68
+1(
+#72
+0(
+#76
+1(
+#80
+0(
+#84
+1(
+#88
+0(
+#92
+1(
+#96
+0(
+#100
+1(
+#104
+0(
+#108
+1(
+#112
+0(
+#116
+1(
+#120
+0(
+#124
+1(
