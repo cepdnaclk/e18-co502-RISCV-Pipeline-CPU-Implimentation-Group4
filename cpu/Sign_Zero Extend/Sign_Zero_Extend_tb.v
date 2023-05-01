@@ -20,12 +20,12 @@ module Sign_Zero_Extend_tb;
         #10;
 
         // Print the input and output values
-        $display("INSTRUCTION = %032b\n", INSTRUCTION);
-        $display("The U_TYPE  = %032b", U_TYPE);
-		$display("The J_TYPE  = %032b", J_TYPE);
-		$display("The I_TYPE  = %032b", I_TYPE);
-		$display("The S_TYPE  = %032b", S_TYPE);
-		$display("The B_TYPE  = %032b\n\n", B_TYPE);
+        $display("INSTRUCTION = %b\n", INSTRUCTION);
+        $display("The U_TYPE  = %b", U_TYPE);
+		$display("The J_TYPE  = %b", J_TYPE);
+		$display("The I_TYPE  = %b", I_TYPE);
+		$display("The S_TYPE  = %b", S_TYPE);
+		$display("The B_TYPE  = %b\n\n", B_TYPE);
 		
 		
 		// Set another value
@@ -35,12 +35,26 @@ module Sign_Zero_Extend_tb;
         #10;
 		
 		// Print the input and output values
-        $display("INSTRUCTION = %032b\n", INSTRUCTION);
-        $display("The U_TYPE  = %032b", U_TYPE);
-		$display("The J_TYPE  = %032b", J_TYPE);
-		$display("The I_TYPE  = %032b", I_TYPE);
-		$display("The S_TYPE  = %032b", S_TYPE);
-		$display("The B_TYPE  = %032b", B_TYPE);
+        $display("INSTRUCTION = %b\n", INSTRUCTION);
+        $display("The U_TYPE  = %b", U_TYPE);
+		$display("The J_TYPE  = %b", J_TYPE);
+		$display("The I_TYPE  = %b", I_TYPE);
+		$display("The S_TYPE  = %b", S_TYPE);
+		$display("The B_TYPE  = %b\n\n", B_TYPE);
+		
+		// Set another value
+		INSTRUCTION = 32'b01111011111011010101010100010011;
+		
+		// Wait a few time units for the output to stabilize
+        #10;
+		
+		// Print the input and output values
+        $display("INSTRUCTION = %b\n", INSTRUCTION);
+        $display("The U_TYPE  = %b", U_TYPE);
+		$display("The J_TYPE  = %b", J_TYPE);
+		$display("The I_TYPE  = %b", I_TYPE);
+		$display("The S_TYPE  = %b", S_TYPE);
+		$display("The B_TYPE  = %b", B_TYPE);
 		
     end
 
