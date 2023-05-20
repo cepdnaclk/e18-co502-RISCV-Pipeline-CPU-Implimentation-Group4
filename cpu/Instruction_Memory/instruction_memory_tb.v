@@ -17,16 +17,16 @@ module instruction_memory_tb;
         
         PC = 0;
         #10;
-        $display("Instruction at address %0d: %b", PC, INSTRUCTION);
+        $display("Instruction at address %0d:  %b", PC, INSTRUCTION);
     
         
         PC = 4;
         #10;
-        $display("Instruction at address %0d: %b", PC, INSTRUCTION);
+        $display("Instruction at address %0d:  %b", PC, INSTRUCTION);
 
         PC = 8;
         #10;
-        $display("Instruction at address %0d: %b", PC, INSTRUCTION);
+        $display("Instruction at address %0d:  %b", PC, INSTRUCTION);
 
         PC = 12;
         #10;
