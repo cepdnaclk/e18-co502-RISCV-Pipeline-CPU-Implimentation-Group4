@@ -1,6 +1,11 @@
+/*
+256x8-bit data memory (4-Byte blocks)
 
-`timescale 1ns/100ps
+Description	:
 
+This memory allows data to be read and written as 4-Byte blocks
+*/
+`timescale  1ns/100ps
 module data_memory(
 	CLK,
     RESET,
@@ -21,7 +26,6 @@ input[31:0]      	MEM_ADDRESS;
 input[31:0]     	DATA_IN;
 output reg [31:0]	DATA_OUT;
 output reg      	BUSYWAIT;
-
 
 //Declare memory array 1024x8-bits 
 reg [7:0] memory_array [1024:0];
@@ -116,6 +120,15 @@ begin
 		MEM_READ_ACCESS = 0;
 		MEM_WRITE_ACCESS = 0;
     end
+end
+
+
+
+initial
+	begin
+    $dumpfile("cpu_wavedata.vcd");
+    for(i=0;i<256;i++)
+        $dumpvars(1,memory_array[i]);
 end
 
 endmodule
