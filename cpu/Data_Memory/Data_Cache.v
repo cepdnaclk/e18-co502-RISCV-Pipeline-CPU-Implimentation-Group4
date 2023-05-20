@@ -13,7 +13,7 @@ module dcache (
     MEM_MEM_READ,
     MEM_MEM_WRITE,
     BUSYWAIT,
-    MEM_BLOCK_ADDR127    MEM_WRITE_OUT     
+    MEM_BLOCK_ADDR,    MEM_WRITE_OUT     
 );
 
     input CLK;
@@ -27,7 +27,7 @@ module dcache (
     output reg[31:0] CACHE_READ_OUT;           // Data blocks, MEM_READ asynchronously according to the offset from the cache to send to register file
     output reg MEM_MEM_READ, MEM_MEM_WRITE;    // Send MEM_MEM_READ, MEM_MEM_WRITE signals to data memory indicating memory is busy or not MEM_READing & writing
     output reg BUSYWAIT;                       // Send signal to stall the CPU on a memory MEM_READ/MEM_WRITE instruction
-    output reg [29:0] MEM_BLOCK_ADDR;          // Send block MEM_ADDRESS to data memory to fetch data words
+    output reg [27:0] MEM_BLOCK_ADDR;          // Send block MEM_ADDRESS to data memory to fetch data words
     output reg [127:0] MEM_WRITE_OUT ;         // Send data word to MEM_WRITE to data memory
 
     
@@ -37,15 +37,16 @@ module dcache (
     ...
     */
 
-    reg STORE_VALID [15:0];              // 8 Registers to store 1 bit valid for each data block
-    reg STORE_DIRTY [15:0];              // 8 Registers to store 1 bit dirty for each data block
-    reg [2:0] STORE_TAG [15:0];          // 8 Registers to store 3 bit tag for each data block
-    reg [31:0] STORE_DATA [15:0];        // 8 Registers to store 32 bit data block
+    reg STORE_VALID [7:0];              // 8 Registers to store 1 bit valid for each data block
+    reg STORE_DIRTY [7:0];              // 8 Registers to store 1 bit dirty for each data block
+    reg [24:0] STORE_TAG [7:0];          // 8 Registers to store 3 bit tag for each data block
+    reg [127:0] STORE_DATA [7:0];        // 8 Registers to store 32 bit data block
 
     integer i;
 
     reg  MEM_READhit;
-    reg [2:0] index,tag;
+    reg [2:0] index;
+    reg [24:0] tag;
     reg [1:0] offset;
 
     always @(MEM_ADDRESS,MEM_READ ,MEM_WRITE)
@@ -63,14 +64,14 @@ module dcache (
         for(i = 0; i < 8; i++) begin
             STORE_VALID[i] = 1'd0;
             STORE_DIRTY[i] = 1'd0;
-            STORE_TAG[i] = 3'dx;
-            STORE_DATA[i] = 32'dx;
+            STORE_TAG[i] = 25'dx;
+            STORE_DATA[i] = 128'dx;
         end
     end
 
     wire VALID, DIRTY;      // To store 1 bit valid & 1 bit dirty bits corresponding to index given by memory MEM_ADDRESS
-    wire [2:0] TAG;         // To store 3 bit tag corresponding to index given by memory MEM_ADDRESS
-    reg [31:0] DATA;        // To store 32 bit data corresponding to index given by memory MEM_ADDRESS
+    wire [24:0] TAG;         // To store 3 bit tag corresponding to index given by memory MEM_ADDRESS
+    reg [127:0] DATA;        // To store 32 bit data corresponding to index given by memory MEM_ADDRESS
 
 
     // Decide whether CPU should be stalled in order to perform memory MEM_READ or MEM_WRITE
@@ -129,13 +130,13 @@ end
 	if(MEM_READhit)begin
 		case(offset)
 			'b00:	
-                 #1 CACHE_READ_OUT = STORE_DATA[index][7:0];
+                 #1 CACHE_READ_OUT = STORE_DATA[index][31:0];
 			'b01:	
-                 #1 CACHE_READ_OUT = STORE_DATA[index][15:8];
+                 #1 CACHE_READ_OUT = STORE_DATA[index][63:32];
 			'b10:	
-                 #1 CACHE_READ_OUT = STORE_DATA[index][23:16];
+                 #1 CACHE_READ_OUT = STORE_DATA[index][95:64];
 			'b11:	
-                 #1 CACHE_READ_OUT = STORE_DATA[index][31:24];
+                 #1 CACHE_READ_OUT = STORE_DATA[index][127:96];
 		endcase
             MEM_READhit = 0;
             state = IDLE;
@@ -154,13 +155,13 @@ end
             STORE_DIRTY[MEM_ADDRESS[4:2]] = 1'b1;       // dirty bit of the index is set as data block in cache is updated with data coming from register file (indicate that the block of data is inconsistant)
 
             if (offset == 2'b00) begin
-                STORE_DATA[index][7:0] = DATA_IN;
+                STORE_DATA[index][31:0] = DATA_IN;
             end else if (offset == 2'b01) begin
-                STORE_DATA[index][15:8] = DATA_IN;
+                STORE_DATA[index][63:32] = DATA_IN;
             end else if (offset == 2'b10) begin
-                STORE_DATA[index][23:16] = DATA_IN;
+                STORE_DATA[index][95:64] = DATA_IN;
             end else if (offset == 2'b11) begin
-                STORE_DATA[index][31:24] = DATA_IN;
+                STORE_DATA[index][127:96] = DATA_IN;
             end
         end
     end
@@ -168,7 +169,7 @@ end
 
     /* Cache Controller FSM Start */
 
-    parameter IDLE = 2'b00, MEM_MEM_READ = 2'b01, MEM_MEM_WRITE = 2'b10, CACHE_UPDATE = 2'b11;
+    parameter IDLE = 2'b00, MEM_MEM_READ_STATE = 2'b01, MEM_MEM_WRITE_STATE = 2'b10, CACHE_UPDATE = 2'b11;
     reg [1:0] state, next_state;
 
     // combinational next state logic
@@ -177,23 +178,23 @@ end
         case (state)
             IDLE:
                 if ((MEM_READ || MEM_WRITE) && !DIRTY && !HITSIGNAL)  
-                    next_state = MEM_MEM_READ;          // If it is a 'miss' and the block isn’t dirty, the missing data block should be MEM_READ from the memory
+                    next_state = MEM_MEM_READ_STATE;          // If it is a 'miss' and the block isn’t dirty, the missing data block should be MEM_READ from the memory
                 else if ((MEM_READ || MEM_WRITE) && DIRTY && !HITSIGNAL)
-                    next_state = MEM_MEM_WRITE;         // If it is a 'miss' and the block is dirty, that block must be written back to the memory
+                    next_state = MEM_MEM_WRITE_STATE;         // If it is a 'miss' and the block is dirty, that block must be written back to the memory
                 else
                     next_state = IDLE;              // If it is a 'hit', either update data block in cache or MEM_READ data from cache
             
-            MEM_MEM_READ:
+            MEM_MEM_READ_STATE:
                 if (MEM_BUSYWAIT)
-                    next_state = MEM_MEM_READ;          // Keep MEM_READing whole data word from memory until the memory de-asserts its BUSYWAIT signal
+                    next_state = MEM_MEM_READ_STATE;          // Keep MEM_READing whole data word from memory until the memory de-asserts its BUSYWAIT signal
                 else    
                     next_state = CACHE_UPDATE;      // Update cache memory with data word MEM_READ from data memory
 
-            MEM_MEM_WRITE:
+            MEM_MEM_WRITE_STATE:
                 if (MEM_BUSYWAIT)
-                    next_state = MEM_MEM_WRITE;         // Keep writing data to the memory until the memory de-asserts its BUSYWAIT signal
+                    next_state = MEM_MEM_WRITE_STATE;         // Keep writing data to the memory until the memory de-asserts its BUSYWAIT signal
                 else    
-                    next_state = MEM_MEM_READ;          // Fetch required data word from memory
+                    next_state = MEM_MEM_READ_STATE;          // Fetch required data word from memory
 
             CACHE_UPDATE:
                 next_state = IDLE;                  // Either update data block in cache or MEM_READ data from cache
@@ -213,30 +214,30 @@ end
                 MEM_MEM_READ = 0;
                 MEM_MEM_WRITE = 0;
                 MEM_BLOCK_ADDR = 6'dx;
-    127    MEM_WRITE_OUT  = 32'dx;
+               MEM_WRITE_OUT  = 32'dx;
                 BUSYWAIT = 0;
 
             end
          
             // State of fetching required data word from memory
-            MEM_MEM_READ: 
+            MEM_MEM_READ_STATE: 
             begin
 
                 MEM_MEM_READ = 1;                       // Enable 'MEM_MEM_READ' to send to data memory to assert 'MEM_BUSYWAIT' in order to stall the CPU
                 MEM_MEM_WRITE = 0;
                 MEM_BLOCK_ADDR = {MEM_ADDRESS[7:2]};       // Derive block MEM_ADDRESS from the MEM_ADDRESS coming from ALU to send to data memory
-    127    MEM_WRITE_OUT  = 32'dx;
+               MEM_WRITE_OUT  = 32'dx;
 
             end
             
             // State of writing data to the memory
-            MEM_MEM_WRITE: 
+            MEM_MEM_WRITE_STATE: 
             begin
 
                 MEM_MEM_READ = 0;
                 MEM_MEM_WRITE = 1;                      // Enable 'MEM_MEM_WRITE' to send to data memory to assert 'MEM_BUSYWAIT' in order to stall the CPU
                 MEM_BLOCK_ADDR = {TAG,index};   // Derive block MEM_ADDRESS to send to data memory to store a existing cache data word
-    127    MEM_WRITE_OUT  = DATA;               // Getting existing cache data word corresponding to index
+                  MEM_WRITE_OUT  = DATA;               // Getting existing cache data word corresponding to index
 
             end
 
@@ -247,7 +248,7 @@ end
                 MEM_MEM_READ = 0;
                 MEM_MEM_WRITE = 0;
                 MEM_BLOCK_ADDR = 6'dx;
-    127    MEM_WRITE_OUT  = 32'dx;
+                MEM_WRITE_OUT  = 32'dx;
 
                 #1
                 STORE_DATA[index] = MEM_READ_OUT;    // Update current cache data word with newly fetched data from memory
