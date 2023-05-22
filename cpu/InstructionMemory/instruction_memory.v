@@ -16,7 +16,7 @@ module instruction_memory(
 
 input               clock;
 input               read;
-input[5:0]          address;
+    input[27:0]          address;
 output reg [127:0]  readinst;
 output reg          busywait;
 
