@@ -1,5 +1,6 @@
 `include "../RegisterFile/reg_file.v"
 `include "../Sign_Zero_Extend/Sign_Zero_Extend.v"
+`include "../ControlUnit/control_unit.v"
 
 
 
@@ -12,16 +13,17 @@ module cpu (
   input RESET, CLK ; 
 
 
-wire WRITE_REG;
+wire WRITE_REG, MUXPC_SELECT, MUXIMM_SELECT, MUXJAL_SELECT, MUXDATAMEM_SELECT, WRITE_ENABLE, MEM_READ, MEM_WRITE, BRANCH, JUMP;
 wire [31:0] INSTRUCTION, IN_REG, OUT1_REG, OUT2_REG,PC_NEXT;
-wire [4:0] MEM_WB_INADDRESS;
+wire [4:0] MEM_WB_INADDRESS, ALUOP;
+wire[2:0] MUXIMMTYPE_SELECT;
 
 output reg[31:0] PC;
 
 
-  // initiating modules
+// initiating modules
 reg_file myreg(IN_REG, OUT1_REG, OUT2_REG, MEM_WB_INADDRESS, INSTRUCTION[19:15], INSTRUCTION[24:20], WRITE_REG, CLK, RESET); 
-
+control_unit mycu(INSTRUCTION, ALUOP,  MUXIMMTYPE_SELECT, MUXPC_SELECT, MUXIMM_SELECT, MUXJAL_SELECT, MUXDATAMEM_SELECT, WRITE_ENABLE, MEM_READ, MEM_WRITE, BRANCH, JUMP);
 
 
 always @ ( posedge CLK ) begin
