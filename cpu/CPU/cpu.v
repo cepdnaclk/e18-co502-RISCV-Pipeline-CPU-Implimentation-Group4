@@ -3,6 +3,7 @@
 `include "../RegisterFile/reg_file.v"
 `include "../Sign_Zero_Extend/Sign_Zero_Extend.v"
 `include "../ControlUnit/control_unit.v"
+
 `include "../Pipeline_Registers/2_ID_EX/ID_EX_register.v"
 
 `include "../Other_modules/mux_2x1_32bit/mux_2x1_32bit.v"
@@ -18,7 +19,7 @@
 `include "pc.v"
 `include "../InstructionMemory/instruction_cache.v"
 `include "../InstructionMemory/instruction_memory.v"
-
+`include "../Pipeline_Registers/1_IF_ID/IF_ID_register.v"
 
 module cpu (
     CLK, RESET
@@ -62,7 +63,13 @@ wire [31:0] MUXJAL_OUT_EX_MEM, OUT2_OUT_EX_MEM;
 wire  MUXDATAMEM_SELECT_OUT_MEM_WB;
 wire [31:0] CACHE_READ_OUT_MEM_WB, MUXJAL_OUT_MEM_WB;
 
+wire [31:0] READINST;
+wire [27:0] MEM_ADDRESS_TO_CACHE;
+wire [127:0] MEM_READINST;
+wire I_BUSYWAIT, I_MEM_READ, I_MEM_BUSYWAIT;
 
+
+assign BUSYWAIT = D_BUSYWAIT || I_BUSYWAIT;
 /* 
 	IF/ID and ID/EX stage
 */
@@ -89,7 +96,7 @@ EX_MEM_register my_ex_mem_register(CLK, RESET, WRITE_ENABLE_OUT, MUXDATAMEM_SELE
 /* 
 	EX/MEM and MEM/WB stage
 */
-dcache my_data_cache(CLK, RESET, MEM_READ_OUT_EX_MEM, MEM_WRITE_OUT_EX_MEM, MUXJAL_OUT_EX_MEM, OUT2_OUT_EX_MEM, MEM_BUSYWAIT, DATA_MEM_READ_OUT, CACHE_READ_OUT, MEM_MEM_READ, MEM_MEM_WRITE, BUSYWAIT, MEM_BLOCK_ADDR, DATA_MEM_WRITE_OUT);
+dcache my_data_cache(CLK, RESET, MEM_READ_OUT_EX_MEM, MEM_WRITE_OUT_EX_MEM, MUXJAL_OUT_EX_MEM, OUT2_OUT_EX_MEM, MEM_BUSYWAIT, DATA_MEM_READ_OUT, CACHE_READ_OUT, MEM_MEM_READ, MEM_MEM_WRITE, D_BUSYWAIT, MEM_BLOCK_ADDR, DATA_MEM_WRITE_OUT);
 data_memory my_data_memory(CLK, RESET, MEM_MEM_READ, MEM_MEM_WRITE, MEM_BLOCK_ADDR, DATA_MEM_WRITE_OUT, DATA_MEM_READ_OUT, MEM_BUSYWAIT);
 
 MEM_WB_register my_mem_wb_register(CLK, RESET, WRITE_ENABLE_OUT_EX_MEM,  MUXDATAMEM_SELECT_OUT_EX_MEM, CACHE_READ_OUT, MUXJAL_OUT_EX_MEM, RD_OUT_EX_MEM, 
@@ -106,11 +113,14 @@ mux_2x1_32bit pc_mux(PC_PLUS_4, BRANCH_OR_JUMP_ADDR, PC_MUX_OUT, PC_MUX_CONTROL)
 pc_module my_pc(PC_MUX_OUT, PC, RESET, CLK, BUSYWAIT);
 adder_32bit_plus_4 my_adder_32bit_plus_4(PC, PC_PLUS_4);
 
-//instruction_cache my_instruction_cache();
 
-//instruction_memory my_instruction_memory();
 
-//IF_ID_register myIFID();
+
+instruction_cache my_instruction_cache(CLK,RESET, PC, READINST,   I_BUSYWAIT, MEM_ADDRESS_TO_CACHE, I_MEM_READ, MEM_READINST, I_MEM_BUSYWAIT);
+
+instruction_memory my_instruction_memory( CLK,I_MEM_READ,MEM_ADDRESS_TO_CACHE,MEM_READINST,I_MEM_BUSYWAIT);
+
+IF_ID_register myIFID(CLK,RESET,READINST,PC_PLUS_4,PC,INSTRUCTION,PC_PLUS_4_OUT_IN,PC_DIRECT_OUT_IN,BUSYWAIT);
 
 
 endmodule
