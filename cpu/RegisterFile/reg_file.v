@@ -4,6 +4,8 @@
 // E Numbers: E/18/077, E/18/397, E/18/402
 // Names: Nipun Dharmarathne, Shamod Wijerathne, Chatura Wimalasiri
 
+`timescale  1ns/100ps
+
 module reg_file(IN, OUT1, OUT2, INADDRESS, OUT1ADDRESS, OUT2ADDRESS, WRITE, CLK, RESET);
     //Port declarations
     input [31:0] IN;                                    //Define 32bit input

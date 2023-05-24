@@ -1,3 +1,5 @@
+`timescale 1ns/100ps
+
 module pc_module(IN, OUT, RESET, CLK, BUSYWAIT);
 
     //declare the ports

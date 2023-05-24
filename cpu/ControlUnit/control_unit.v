@@ -4,6 +4,8 @@
 // E Numbers: E/18/077, E/18/397, E/18/402
 // Names: Nipun Dharmarathne, Shamod Wijerathne, Chatura Wimalasiri
 
+`timescale  1ns/100ps
+
 module control_unit(INSTRUCTION, ALUOP, MUXIMMTYPE_SELECT, MUXPC_SELECT, MUXIMM_SELECT, MUXJAL_SELECT, MUXDATAMEM_SELECT, WRITE_ENABLE, MEM_READ, MEM_WRITE, BRANCH, JUMP);
     //port declaration
     input  [31:0] INSTRUCTION;

@@ -1,5 +1,6 @@
 // This encoding is for U_TYPE, J_TYPE, I_TYPE, S_TYPE, B_TYPE instructions
 
+`timescale  1ns/100ps
 
 module Sign_Zero_Extend(INSTRUCTION,SELECT, OUT);
 

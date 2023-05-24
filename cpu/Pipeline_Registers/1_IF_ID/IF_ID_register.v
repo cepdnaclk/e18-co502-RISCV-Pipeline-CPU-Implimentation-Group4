@@ -4,6 +4,8 @@
 // E Numbers: E/18/077, E/18/397, E/18/402
 // Names: Nipun Dharmarathne, Shamod Wijerathne, Chatura Wimalasiri  
 
+`timescale  1ns/100ps
+
 module IF_ID_register(
 	CLK,
 	RESET,

@@ -5,7 +5,9 @@ Description	:
 
 This memory allows data to be read and written as 4-Byte blocks
 */
+
 `timescale  1ns/100ps
+
 module data_memory(
 	CLK,
     RESET,
