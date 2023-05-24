@@ -99,5 +99,13 @@ begin
         readaccess = 0;
     end
 end
+integer i = 0;
+initial
+    begin
+        $dumpfile("cpu_wavedata.vcd");
+        for(i=0;i<1024;i++)
+            $dumpvars(1,memory_array[i]);
+    end  
+ 
  
 endmodule
