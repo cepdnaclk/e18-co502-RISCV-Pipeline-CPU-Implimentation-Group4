@@ -45,4 +45,13 @@ module IF_ID_register(
     end
 
 
+	 initial
+    begin
+        $dumpfile("cpu_wavedata.vcd");
+        $dumpvars(1,INSTRUCTION_OUT);
+		$dumpvars(1,PC_DIRECT_OUT);
+		$dumpvars(1,PC_PLUS_4_OUT);
+    end    
+
+
 endmodule
