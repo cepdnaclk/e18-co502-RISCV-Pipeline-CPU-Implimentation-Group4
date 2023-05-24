@@ -4,6 +4,8 @@
 // E Numbers: E/18/077, E/18/397, E/18/402
 // Names: Nipun Dharmarathne, Shamod Wijerathne, Chatura Wimalasiri
 
+`timescale  1ns/100ps
+
 //ALU 32-bit module
 module alu(DATA1, DATA2, RESULT, SELECT, EQ_FLAG, LT_FLAG, LTU_FLAG);
     //Port declarations, Declarations of wire & reg
