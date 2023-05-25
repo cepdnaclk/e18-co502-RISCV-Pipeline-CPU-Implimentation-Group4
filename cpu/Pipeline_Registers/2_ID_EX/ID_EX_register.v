@@ -62,26 +62,26 @@ module ID_EX_register(
 	always @ (*) begin
         if (RESET) begin
 			#1
-			WRITE_ENABLE_OUT = 1'dx; 
-			MUXDATAMEM_SELECT_OUT = 1'dx; 
-			MEM_READ_OUT = 1'dx; 
-			MEM_WRITE_OUT = 1'dx; 
-			MUXJAL_SELECT_OUT = 1'dx; 
-			MUXIMM_SELECT_OUT = 1'dx; 
-			MUXPC_SELECT_OUT = 1'dx; 
-			BRANCH_OUT = 1'dx; 
-			JUMP_OUT = 1'dx; 
+			WRITE_ENABLE_OUT = 1'd0; 
+			MUXDATAMEM_SELECT_OUT = 1'd0; 
+			MEM_READ_OUT = 1'd0; 
+			MEM_WRITE_OUT = 1'd0; 
+			MUXJAL_SELECT_OUT = 1'd0; 
+			MUXIMM_SELECT_OUT = 1'd0; 
+			MUXPC_SELECT_OUT = 1'd0; 
+			BRANCH_OUT = 1'd0; 
+			JUMP_OUT = 1'd0; 
 			
-			FUNCT3_OUT = 3'dx;
+			FUNCT3_OUT = 3'd0;
 			
-			ALUOP_OUT = 5'dx;
-			RD_OUT = 5'dx;
+			ALUOP_OUT = 5'd0;
+			RD_OUT = 5'd0;
 			
-			PC_DIRECT_OUT_OUT = 32'dx;
-			SIGN_ZERO_EXTEND_OUT = 32'dx;
-			PC_PLUS_4_OUT_OUT = 32'dx;
-			OUT1_OUT = 32'dx;
-			OUT2_OUT = 32'dx;
+			PC_DIRECT_OUT_OUT = 32'd0;
+			SIGN_ZERO_EXTEND_OUT = 32'd0;
+			PC_PLUS_4_OUT_OUT = 32'd0;
+			OUT1_OUT = 32'd0;
+			OUT2_OUT = 32'd0;
 		end
 	end
 	
@@ -89,9 +89,9 @@ module ID_EX_register(
 	// input data tranmits to outputs at the positive edge of the clock
 	// At this moment, reset must be low
 	// Assignments to outputs happen simultaneously
-	always @ (posedge CLK) begin
-        if (!BUSYWAIT && !RESET) begin
-			#1
+		always @ (*) begin
+        if (BUSYWAIT == 1'b0 ) begin
+			
 			WRITE_ENABLE_OUT <= WRITE_ENABLE_IN;
 			MUXDATAMEM_SELECT_OUT <= MUXDATAMEM_SELECT_IN;
 			MEM_READ_OUT <= MEM_READ_IN;

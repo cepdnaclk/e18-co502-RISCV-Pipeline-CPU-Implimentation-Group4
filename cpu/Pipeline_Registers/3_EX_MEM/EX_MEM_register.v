@@ -45,23 +45,22 @@ module EX_MEM_register(
     always @ (*) begin
         if (RESET) begin
             #1;
-            WRITE_ENABLE_OUT = 1'dx;
-			MUXDATAMEM_SELECT_OUT = 1'dx;
-			MEM_READ_OUT = 1'dx;
-			MEM_WRITE_OUT = 1'dx;
-			FUNCT3_OUT = 3'dx;
-			RD_OUT = 5'dx;
-			ALU_OUT_OUT = 32'dx;
-			OUT2_OUT = 32'dx;
+            WRITE_ENABLE_OUT = 1'd0;
+			MUXDATAMEM_SELECT_OUT = 1'd0;
+			MEM_READ_OUT = 1'd0;
+			MEM_WRITE_OUT = 1'd0;
+			FUNCT3_OUT = 3'd0;
+			RD_OUT = 5'd0;
+			ALU_OUT_OUT = 32'd0;
+			OUT2_OUT = 32'd0;
         end
     end
 	
 	// input data tranmits to outputs at the positive edge of the clock
 	// Assignments to outputs happen simultaneously
-	always @ (posedge CLK) begin
-        if (!BUSYWAIT && !RESET) begin 
-		// need to consider busywait to handle cache miss
-            #1;
+		always @ (*) begin
+        if (BUSYWAIT == 1'b0 ) begin
+			
             WRITE_ENABLE_OUT <= WRITE_ENABLE_IN;
 			MUXDATAMEM_SELECT_OUT <= MUXDATAMEM_SELECT_IN;
 			MEM_READ_OUT <= MEM_READ_IN;

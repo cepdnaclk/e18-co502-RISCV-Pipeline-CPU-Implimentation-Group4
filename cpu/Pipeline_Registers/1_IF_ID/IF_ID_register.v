@@ -28,21 +28,21 @@ module IF_ID_register(
 	always @ (*) begin
         if (RESET) begin
             #1;
-            INSTRUCTION_OUT = 32'dx;
-            PC_PLUS_4_OUT = 32'dx;
-			PC_DIRECT_OUT = 32'dx;
+            INSTRUCTION_OUT = 32'd0;
+            PC_PLUS_4_OUT = 32'd0;
+			PC_DIRECT_OUT = 32'd0;
         end
     end
 
 	// input data tranmits to outputs at the positive edge of the clock
 	// At this moment, reset must be low
 	// Assignments to outputs happen simultaneously
-	always @ (posedge CLK) begin
-        if (!BUSYWAIT && !RESET) begin
-			#1;
+	always @ (*) begin
+        if (BUSYWAIT == 1'b0 ) begin
+			
             INSTRUCTION_OUT <= INSTRUCTION_IN;
-            PC_PLUS_4_OUT <= PC_PLUS_4_IN;
-			PC_DIRECT_OUT <= PC_DIRECT_IN;
+           PC_PLUS_4_OUT <= PC_PLUS_4_IN;
+		 	PC_DIRECT_OUT <= PC_DIRECT_IN;
         end
     end
 

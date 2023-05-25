@@ -33,7 +33,7 @@ module instruction_cache(
     reg [24:0] inst_tag [0:7];        // 24 bit tag to store along with every data block
 
     //set busywait when a pc value is sent to the cache when the address is not -4
-    always @ (address)
+    always @ (address ) // (address || !hit)
     begin
         if(address != -32'd4) busywait = 1;
     end
@@ -59,6 +59,8 @@ module instruction_cache(
     begin
         if (hit) busywait = 0;
     end
+
+    
 
     // Reading instruction from cache according to the offset, if it is a hit
     always @ (*)
@@ -89,7 +91,7 @@ module instruction_cache(
                 if (!hit && (address != -32'd4))  
                    next_state = READ_MEM;
                 else
-                    next_state = IDLE;
+                   next_state = IDLE;
                 
             READ_MEM:
                 if (!mem_busywait)
@@ -111,6 +113,7 @@ module instruction_cache(
                 begin
                     mem_read = 0;
                     mem_address = 28'dx;
+                    busywait = 0;
                 end
              
             READ_MEM: 

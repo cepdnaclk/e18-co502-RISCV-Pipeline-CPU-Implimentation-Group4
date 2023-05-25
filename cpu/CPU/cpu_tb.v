@@ -18,10 +18,10 @@ module cpu_tb;
         CLK = 1'b0;
 		RESET = 1'b0;
 		RESET = 1'b1;
-		#4;
+		#2;
 		RESET = 1'b0;
 		
-		#5000;
+		#15000;
 		$finish;
         
     end
@@ -29,7 +29,7 @@ module cpu_tb;
 
 // clock genaration.
 always begin
-    #8 CLK = ~CLK;
+    #3 CLK = ~CLK;
 end
 
 endmodule
