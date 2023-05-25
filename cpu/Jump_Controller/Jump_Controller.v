@@ -40,7 +40,7 @@ always @(*)begin
         REG_FLUSH =  1'b1;
     end
     else begin
-         PC_MUX_CONTROL = 1'b0;
+        PC_MUX_CONTROL = 1'b0;
         REG_FLUSH =  1'b0;
     end
     // PC_MUX_CONTROL=(BRANCH &(BEQ|BGE|BNE|BLT|BLTU|BGEU)) | (JUMP);
@@ -59,6 +59,10 @@ always @(*) begin
         BRANCH_OR_JUMP_ADDR=BRANCH_ADDR;
     end
 end
+
+// always @(*) begin
+//     REG_FLUSH = REG_FLUSH | RESET;
+// end
 
 
     

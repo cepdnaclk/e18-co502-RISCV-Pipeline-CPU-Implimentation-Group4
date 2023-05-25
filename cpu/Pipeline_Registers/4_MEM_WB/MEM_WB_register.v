@@ -36,20 +36,19 @@ module MEM_WB_register(
 	always @ (*) begin
         if(RESET) begin
 			#1
-			WRITE_ENABLE_OUT = 1'dx;
-			MUXDATAMEM_SELECT_OUT = 1'dx;
-			RD_OUT = 5'dx;
-			ALU_OUT_OUT = 32'dx;
-			DATA_OUT_OUT = 32'dx;
+			WRITE_ENABLE_OUT = 1'd0;
+			MUXDATAMEM_SELECT_OUT = 1'd0;
+			RD_OUT = 5'd0;
+			ALU_OUT_OUT = 32'd0;
+			DATA_OUT_OUT = 32'd0;
 		end
 	end
 	
 	// input data tranmits to outputs at the positive edge of the clock
 	// Assignments to outputs happen simultaneously
-	always @ (posedge CLK) begin
-        if(!BUSYWAIT && !RESET) begin  
-		// need to consider busywait to handle cache miss
-            #1;
+		always @ (*) begin
+        if (BUSYWAIT == 1'b0 ) begin
+			
             WRITE_ENABLE_OUT <= WRITE_ENABLE_IN;
 			MUXDATAMEM_SELECT_OUT <= MUXDATAMEM_SELECT_IN;
 			RD_OUT <= RD_IN;
