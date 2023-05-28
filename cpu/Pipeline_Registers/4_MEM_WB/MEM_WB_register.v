@@ -48,7 +48,7 @@ module MEM_WB_register(
 	// Assignments to outputs happen simultaneously
 		always @ (*) begin
         if (BUSYWAIT == 1'b0 ) begin
-			
+			#2
             WRITE_ENABLE_OUT <= WRITE_ENABLE_IN;
 			MUXDATAMEM_SELECT_OUT <= MUXDATAMEM_SELECT_IN;
 			RD_OUT <= RD_IN;

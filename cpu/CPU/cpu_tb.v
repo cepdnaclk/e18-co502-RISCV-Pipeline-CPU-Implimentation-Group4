@@ -18,7 +18,7 @@ module cpu_tb;
         CLK = 1'b0;
 		RESET = 1'b0;
 		RESET = 1'b1;
-		#2;
+		#4;
 		RESET = 1'b0;
 		
 		#15000;

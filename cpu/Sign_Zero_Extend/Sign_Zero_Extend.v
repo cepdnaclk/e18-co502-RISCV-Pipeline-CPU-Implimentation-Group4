@@ -30,7 +30,7 @@ module Sign_Zero_Extend(INSTRUCTION,SELECT, OUT);
 	
 	
 	always @(*) begin
-		#1
+		#2
 		
 		 U_TYPE = {INSTRUCTION[31:12],{12{1'b0}}};
 		 J_TYPE = {{12{INSTRUCTION[31]}},INSTRUCTION[19:12],INSTRUCTION[20],INSTRUCTION[30:21],1'b0};
