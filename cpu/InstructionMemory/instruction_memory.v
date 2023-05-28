@@ -39,32 +39,58 @@ initial begin
     // LW x13, 0xF23(x1)    : loads a 32-bit word of data from memory at the address given by the sum of the value in register x1 and the offset of 0xF23, and stores the result in register x13
     // SW x13,0xF23(x1)     : stores the value in register x13 to memory at the address given by the sum of the value in register x1 and the offset of 0xF23
     
-    {memory_array[10'd03], memory_array[10'd02], memory_array[10'd01], memory_array[10'd00]} <= 32'b100011110001_00001_000_00001_0010011;   // ADDI x1, x1, 0x8F1 (adds the immediate value 0x8F1 to the value in register x1 and stores the result back in x1)
+    // {memory_array[10'd03], memory_array[10'd02], memory_array[10'd01], memory_array[10'd00]} <= 32'b100011110001_00001_000_00001_0010011;   // ADDI x1, x1, 0x8F1 (adds the immediate value 0x8F1 to the value in register x1 and stores the result back in x1)
     
-    {memory_array[10'd07], memory_array[10'd06], memory_array[10'd05], memory_array[10'd04]} <= 32'b0000000_00000_00000_000_00000_0000000;  // This instruction is a no-operation (NOP) instruction, which performs no operation and simply moves to the next instruction         
-    {memory_array[10'd11], memory_array[10'd10], memory_array[10'd09], memory_array[10'd08]} <= 32'b0000000_00000_00000_000_00000_0000000;  // This instruction is a no-operation (NOP) instruction, which performs no operation and simply moves to the next instruction      
+    // {memory_array[10'd07], memory_array[10'd06], memory_array[10'd05], memory_array[10'd04]} <= 32'b0000000_00000_00000_000_00000_0000000;  // This instruction is a no-operation (NOP) instruction, which performs no operation and simply moves to the next instruction         
+    // {memory_array[10'd11], memory_array[10'd10], memory_array[10'd09], memory_array[10'd08]} <= 32'b0000000_00000_00000_000_00000_0000000;  // This instruction is a no-operation (NOP) instruction, which performs no operation and simply moves to the next instruction      
     
-    {memory_array[10'd15], memory_array[10'd14], memory_array[10'd13], memory_array[10'd12]} <= 32'b0000000_00000_00001_111_01100_0010011;  // ANDI x1, x12, 0x000  (bitwise logical AND operation between the value in register x12 and the immediate value 0x000, and stores the result in register x1)
+    // {memory_array[10'd15], memory_array[10'd14], memory_array[10'd13], memory_array[10'd12]} <= 32'b0000000_00000_00001_111_01100_0010011;  // ANDI x1, x12, 0x000  (bitwise logical AND operation between the value in register x12 and the immediate value 0x000, and stores the result in register x1)
     
-    {memory_array[10'd19], memory_array[10'd18], memory_array[10'd17], memory_array[10'd16]} <= 32'b0000000_00000_00000_000_00000_0000000;  // This instruction is a no-operation (NOP) instruction, which performs no operation and simply moves to the next instruction     
-    {memory_array[10'd23], memory_array[10'd22], memory_array[10'd21], memory_array[10'd20]} <= 32'b0000000_00000_00000_000_00000_0000000;  // This instruction is a no-operation (NOP) instruction, which performs no operation and simply moves to the next instruction     
+    // {memory_array[10'd19], memory_array[10'd18], memory_array[10'd17], memory_array[10'd16]} <= 32'b0000000_00000_00000_000_00000_0000000;  // This instruction is a no-operation (NOP) instruction, which performs no operation and simply moves to the next instruction     
+    // {memory_array[10'd23], memory_array[10'd22], memory_array[10'd21], memory_array[10'd20]} <= 32'b0000000_00000_00000_000_00000_0000000;  // This instruction is a no-operation (NOP) instruction, which performs no operation and simply moves to the next instruction     
     
-    {memory_array[10'd27], memory_array[10'd26], memory_array[10'd25], memory_array[10'd24]} <= 32'b0000000_00001_01100_000_00001_0100011;  // SB x1, 0x001(x12)  (stores the least significant byte of the value in register x1 to memory at the address given by the sum of the value in register x12 and the offset of 0x001)
+    // {memory_array[10'd27], memory_array[10'd26], memory_array[10'd25], memory_array[10'd24]} <= 32'b0000000_00001_01100_000_00001_0100011;  // SB x1, 0x001(x12)  (stores the least significant byte of the value in register x1 to memory at the address given by the sum of the value in register x12 and the offset of 0x001)
     
-    {memory_array[10'd31], memory_array[10'd30], memory_array[10'd29], memory_array[10'd28]} <= 32'b0000000_00000_00000_000_00000_0000000;  // This instruction is a no-operation (NOP) instruction, which performs no operation and simply moves to the next instruction    
-    {memory_array[10'd35], memory_array[10'd34], memory_array[10'd33], memory_array[10'd32]} <= 32'b0000000_00000_00000_000_00000_0000000;  // This instruction is a no-operation (NOP) instruction, which performs no operation and simply moves to the next instruction
+    // {memory_array[10'd31], memory_array[10'd30], memory_array[10'd29], memory_array[10'd28]} <= 32'b0000000_00000_00000_000_00000_0000000;  // This instruction is a no-operation (NOP) instruction, which performs no operation and simply moves to the next instruction    
+    // {memory_array[10'd35], memory_array[10'd34], memory_array[10'd33], memory_array[10'd32]} <= 32'b0000000_00000_00000_000_00000_0000000;  // This instruction is a no-operation (NOP) instruction, which performs no operation and simply moves to the next instruction
     
-    {memory_array[10'd39], memory_array[10'd38], memory_array[10'd37], memory_array[10'd36]} <= 32'b111100100011_01100_000_00010_0000011;   // LB x2, 0xF23(x12)  (loads a signed byte of data from memory at the address given by the sum of the value in register x12 and the offset of 0xF23, sign-extends the byte to 32 bits, and stores the result in register x2)
+    // {memory_array[10'd39], memory_array[10'd38], memory_array[10'd37], memory_array[10'd36]} <= 32'b111100100011_01100_000_00010_0000011;   // LB x2, 0xF23(x12)  (loads a signed byte of data from memory at the address given by the sum of the value in register x12 and the offset of 0xF23, sign-extends the byte to 32 bits, and stores the result in register x2)
     
-    {memory_array[10'd43], memory_array[10'd42], memory_array[10'd41], memory_array[10'd40]} <= 32'b0000000_00000_00000_000_00000_0000000;  // This instruction is a no-operation (NOP) instruction, which performs no operation and simply moves to the next instruction
+    // {memory_array[10'd43], memory_array[10'd42], memory_array[10'd41], memory_array[10'd40]} <= 32'b0000000_00000_00000_000_00000_0000000;  // This instruction is a no-operation (NOP) instruction, which performs no operation and simply moves to the next instruction
     
-    {memory_array[10'd47], memory_array[10'd46], memory_array[10'd45], memory_array[10'd44]} <= 32'b1111001_01100_00001_010_00011_0100011;  // SW x12, 0xF23(x1)  (stores the value in register x12 to memory at the address given by the sum of the value in register x1 and the offset of 0xF23)
-    {memory_array[10'd51], memory_array[10'd50], memory_array[10'd49], memory_array[10'd48]} <= 32'b111100100011_00001_010_01101_0000011;   // LW x13, 0xF23(x1)  (loads a 32-bit word of data from memory at the address given by the sum of the value in register x1 and the offset of 0xF23, and stores the result in register x13)
+    // {memory_array[10'd47], memory_array[10'd46], memory_array[10'd45], memory_array[10'd44]} <= 32'b1111001_01100_00001_010_00011_0100011;  // SW x12, 0xF23(x1)  (stores the value in register x12 to memory at the address given by the sum of the value in register x1 and the offset of 0xF23)
+    // {memory_array[10'd51], memory_array[10'd50], memory_array[10'd49], memory_array[10'd48]} <= 32'b111100100011_00001_010_01101_0000011;   // LW x13, 0xF23(x1)  (loads a 32-bit word of data from memory at the address given by the sum of the value in register x1 and the offset of 0xF23, and stores the result in register x13)
     
-    {memory_array[10'd55], memory_array[10'd54], memory_array[10'd53], memory_array[10'd52]} <= 32'b0000000_00000_00000_000_00000_0000000;  // This instruction is a no-operation (NOP) instruction, which performs no operation and simply moves to the next instruction
-    {memory_array[10'd59], memory_array[10'd58], memory_array[10'd57], memory_array[10'd56]} <= 32'b0000000_00000_00000_000_00000_0000000;  // This instruction is a no-operation (NOP) instruction, which performs no operation and simply moves to the next instruction
+    // {memory_array[10'd55], memory_array[10'd54], memory_array[10'd53], memory_array[10'd52]} <= 32'b0000000_00000_00000_000_00000_0000000;  // This instruction is a no-operation (NOP) instruction, which performs no operation and simply moves to the next instruction
+    // {memory_array[10'd59], memory_array[10'd58], memory_array[10'd57], memory_array[10'd56]} <= 32'b0000000_00000_00000_000_00000_0000000;  // This instruction is a no-operation (NOP) instruction, which performs no operation and simply moves to the next instruction
     
-    {memory_array[10'd63], memory_array[10'd62], memory_array[10'd61], memory_array[10'd60]} <= 32'b1111001_01101_00001_010_00011_0100011;  // SW x13, 0xF23(x1)  (stores the value in register x13 to memory at the address given by the sum of the value in register x1 and the offset of 0xF23)
+    // {memory_array[10'd63], memory_array[10'd62], memory_array[10'd61], memory_array[10'd60]} <= 32'b1111001_01101_00001_010_00011_0100011;  // SW x13, 0xF23(x1)  (stores the value in register x13 to memory at the address given by the sum of the value in register x1 and the offset of 0xF23)
+
+    // $readmemb("inster_mem.txt", memory_array);
+
+    // addi x1 x0 10
+    // addi x2 x0 5
+    // add x3 x1 x2
+    // sub x4 x1 x2
+    // sw x3 0(x0)
+    // sw x4 4(x0)
+    // lw x5 0(x0)
+    // lw x6 4(x0)
+
+    {memory_array[10'd03], memory_array[10'd02], memory_array[10'd01], memory_array[10'd00]} <= 32'b00000000101000000000000010010011;   // ADDI x1, x1, 0x8F1 (adds the immediate value 0x8F1 to the value in register x1 and stores the result back in x1)
+    
+    {memory_array[10'd07], memory_array[10'd06], memory_array[10'd05], memory_array[10'd04]} <= 32'b00000000010100000000000100010011;  // This instruction is a no-operation (NOP) instruction, which performs no operation and simply moves to the next instruction         
+    {memory_array[10'd11], memory_array[10'd10], memory_array[10'd09], memory_array[10'd08]} <= 32'b00000000001000001000000110110011;  // This instruction is a no-operation (NOP) instruction, which performs no operation and simply moves to the next instruction      
+    
+    {memory_array[10'd15], memory_array[10'd14], memory_array[10'd13], memory_array[10'd12]} <= 32'b01000000001000001000001000110011;  // ANDI x1, x12, 0x000  (bitwise logical AND operation between the value in register x12 and the immediate value 0x000, and stores the result in register x1)
+    
+    {memory_array[10'd19], memory_array[10'd18], memory_array[10'd17], memory_array[10'd16]} <= 32'b00000000001100000010000000100011;  // This instruction is a no-operation (NOP) instruction, which performs no operation and simply moves to the next instruction     
+    {memory_array[10'd23], memory_array[10'd22], memory_array[10'd21], memory_array[10'd20]} <= 32'b00000000010000000010001000100011;  // This instruction is a no-operation (NOP) instruction, which performs no operation and simply moves to the next instruction     
+    
+    {memory_array[10'd27], memory_array[10'd26], memory_array[10'd25], memory_array[10'd24]} <= 32'b00000000000000000010001010000011;  // SB x1, 0x001(x12)  (stores the least significant byte of the value in register x1 to memory at the address given by the sum of the value in register x12 and the offset of 0x001)
+    
+    {memory_array[10'd31], memory_array[10'd30], memory_array[10'd29], memory_array[10'd28]} <= 32'b00000000010000000010001100000011;  // This instruction is a no-operation (NOP) instruction, which performs no operation and simply moves to the next instruction    
+
 end
 
 //Detecting an incoming memory access
