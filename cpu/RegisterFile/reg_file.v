@@ -23,6 +23,15 @@ module reg_file(IN, OUT1, OUT2, INADDRESS, OUT1ADDRESS, OUT2ADDRESS, WRITE, CLK,
 
     //The always block triggeres (synchronously) only for the positive edge of the clock pulse
 	always @(posedge CLK) begin
+        
+
+     
+            //Write data to the register when write signal is high
+            if (WRITE && !RESET) #1 register[INADDRESS] <= IN;
+       
+	end
+
+    always @(*) begin
         if (RESET) begin
             //Resetting all register values to zero when RESET signal is high
             #1
@@ -30,12 +39,7 @@ module reg_file(IN, OUT1, OUT2, INADDRESS, OUT1ADDRESS, OUT2ADDRESS, WRITE, CLK,
                 register[i] <= 0;
             end
         end
-
-        else begin
-            //Write data to the register when write signal is high
-            if (WRITE) #1 register[INADDRESS] <= IN;
-        end
-	end 
+    end 
 
     initial
     begin

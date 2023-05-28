@@ -39,7 +39,7 @@ module IF_ID_register(
 	// Assignments to outputs happen simultaneously
 	always @ (*) begin
         if (BUSYWAIT == 1'b0 ) begin
-			
+			#2
             INSTRUCTION_OUT <= INSTRUCTION_IN;
            PC_PLUS_4_OUT <= PC_PLUS_4_IN;
 		 	PC_DIRECT_OUT <= PC_DIRECT_IN;
