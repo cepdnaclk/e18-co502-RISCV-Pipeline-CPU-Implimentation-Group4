@@ -265,6 +265,48 @@
         </div>
       </div>
     </section>
+	
+	<section class="features" id="phase4">
+      <div class="container">
+
+        <div class="section-title">
+          <h2>Phase 4 (Hazard Handling)</h2>
+          <p>During the fourth phase of our project, we handled hazards in our pipelined processor, which includes datapath, control, 
+            instruction/data memory, caching, assembler, and test programs.
+          </p>
+        </div>
+
+        <div class="row" data-aos="fade-up">
+          <div class="col-md-5">
+            <img src="assets/img/phases/4/phase4.jpg" class="img-fluid" alt="" height="100%">
+          </div>
+          <div class="col-md-7">
+            <p class="fst-italic">Hazard handling is a crucial aspect of computer architecture, especially in modern processor
+			designs like RISC-V. In the context of RISC-V, hazard handling refers to the techniques and
+			mechanisms employed to address potential issues that arise due to dependencies and timing
+			conflicts among instructions. hese hazards can impact the proper execution and performance
+			of a processor.
+            </p>
+            <p class="fst-italic">This simplicity can lead to hazards that need to be managed effectively. Hazards can occur in
+			different forms, such as data hazards, control hazards, and structural hazards. Data hazards occur when there are dependencies between instructions, 
+			and the availability of data for one instruction is dependent on the completion of another instruction. This can lead to
+			incorrect results or delays in execution. Control hazards arise when the control flow of
+			instructions is affected, such as branching or jumping to a different instruction address.
+			<b>This project is only focused on Data hazards and Control hazards</b>.</p>
+            <p class="fst-italic">To handle these hazards, RISC-V employs various techniques. One commonly used technique
+			is instruction forwarding, which allows the result of a previous instruction to be directly forwarded
+			to a dependent instruction, eliminating the need to wait for it to be written back to the register
+			file. Branch prediction is another important technique used to mitigate control hazards by
+			predicting the outcome of a branch instruction and speculatively executing instructions based on
+			that prediction.
+            </p>
+            <a class="btn btn-primary" href="" role="button" target="_blank">Document</a>
+            <a class="btn btn-primary" href="" role="button" target="_blank">Pipeline Diagram</a>
+           
+          </div>
+        </div>
+      </div>
+    </section>
       
     <!-- <section class="features" id="phase2">
       <div class="container">
